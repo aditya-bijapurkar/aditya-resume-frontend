@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import './Pages.css';
+import { emailService, ContactFormData } from '../services/emailService';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
-    email: '',
+    emailId: '',
     subject: '',
-    message: ''
+    text: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -16,16 +22,43 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleMailSuccess = () => {
+    setSubmitStatus({ type: 'success', message: 'Thank you for your mail! I will get back to you soon.' });
+    setTimeout(() => {
+      setSubmitStatus({ type: null, message: '' });
+    }, 5000);
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+    
+    try {
+      const result = await emailService.sendContactEmail(formData);
+      handleMailSuccess();
+      
+      setFormData({
+        name: '',
+        emailId: '',
+        subject: '',
+        text: ''
+      });
+    } catch (error) {
+      setSubmitStatus({ 
+        type: 'error', 
+        message: error instanceof Error ? error.message : 'Failed to send message. Please try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="page">
       <div className="page-header">
         <h1>Get In Touch</h1>
-        <p className="subtitle">Let's work together on your next project</p>
+        <p className="subtitle">Please feel free to reach out to me for any questions or collaborations.</p>
       </div>
       
       <div className="page-content">
@@ -35,8 +68,8 @@ const Contact: React.FC = () => {
             <div className="contact-item">
               <span className="contact-icon">📧</span>
               <div>
-                <h4>Email</h4>
-                <p>your.email@example.com</p>
+                <h4>Personal Email</h4>
+                <p>adityabijapurkar@gmail.com</p>
               </div>
             </div>
             
@@ -44,23 +77,23 @@ const Contact: React.FC = () => {
               <span className="contact-icon">📱</span>
               <div>
                 <h4>Phone</h4>
-                <p>+1 (555) 123-4567</p>
+                <p>+91 6301930425</p>
               </div>
             </div>
-            
+
             <div className="contact-item">
-              <span className="contact-icon">📍</span>
+              <span className="contact-icon">⚒️</span>
               <div>
-                <h4>Location</h4>
-                <p>City, State, Country</p>
+                <h4>Leetcode</h4>
+                <a href="https://leetcode.com/u/adityabijapurkar/" target='_blank'><p>https://leetcode.com/u/adityabijapurkar/</p></a>
               </div>
             </div>
-            
+
             <div className="contact-item">
               <span className="contact-icon">💼</span>
               <div>
                 <h4>LinkedIn</h4>
-                <p>linkedin.com/in/yourprofile</p>
+                <a href="https://www.linkedin.com/in/aditya-bijapurkar/" target='_blank'><p>https://www.linkedin.com/in/aditya-bijapurkar/</p></a>
               </div>
             </div>
             
@@ -68,13 +101,29 @@ const Contact: React.FC = () => {
               <span className="contact-icon">🐙</span>
               <div>
                 <h4>GitHub</h4>
-                <p>github.com/yourusername</p>
+                <a href="https://github.com/aditya-bijapurkar" target='_blank'><p>https://github.com/aditya-bijapurkar</p></a>
+              </div>
+            </div>
+
+            <div className="contact-item">
+              <span className="contact-icon">📍</span>
+              <div>
+                <h4>Location</h4>
+                <p>Bengaluru, Karnataka, India</p>
               </div>
             </div>
           </div>
           
           <div className="contact-form">
-            <h3>Send Me a Message</h3>
+            <h3>Send Me a Mail</h3>
+            <small>You will recieve a copy mail for the same from the system!</small>
+            
+            {submitStatus.type && (
+              <div className={`status-message ${submitStatus.type}`}>
+                {submitStatus.message}
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -93,8 +142,8 @@ const Contact: React.FC = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
-                  value={formData.email}
+                  name="emailId"
+                  value={formData.emailId}
                   onChange={handleChange}
                   required
                 />
@@ -116,16 +165,21 @@ const Contact: React.FC = () => {
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
-                  name="message"
-                  value={formData.message}
+                  name="text"
+                  style={{ fontSize: '16px' }}
+                  value={formData.text}
                   onChange={handleChange}
                   rows={5}
                   required
-                ></textarea>
+                />
               </div>
               
-              <button type="submit" className="btn btn-primary">
-                Send Message
+              <button 
+                type="submit" 
+                className="btn btn-primary"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Mail'}
               </button>
             </form>
           </div>
