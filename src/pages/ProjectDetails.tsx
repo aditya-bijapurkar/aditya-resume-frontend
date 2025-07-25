@@ -72,31 +72,36 @@ const ProjectDetails: React.FC = () => {
         <p className="subtitle">This page contains the implementation details for the website!</p>
       </div>
       
-      <div className="page-content">
-        {/* Flowchart Section */}
-        <div className="flowchart-section">
+      <div className="page-content">        
+        <div className="sub-header">
           <h2>System Architecture Overview</h2>
-          <div className="flowchart-container">
-            <div className="flowchart-placeholder">
-              <p>📊 Architecture Flowchart</p>
-              <p className="flowchart-note">Flowchart will be added here - you can replace this with your actual flowchart image or diagram</p>
-            </div>
-          </div>
         </div>
-
         <div className="explanation-section">
           <h2>How It Works</h2>
           <p>
-            This portfolio website is built using React with TypeScript for the frontend, showcasing modern web development practices. 
-            The backend infrastructure demonstrates my expertise in Spring Boot, PostgreSQL, and AWS services.
+            This portfolio website is built using React with TypeScript for the frontend, showcasing modern web development practices.<br/> 
+            The backend infrastructure demonstrates my expertise in Spring Boot, PostgreSQL, and AWS services.<br/>
             The system follows microservices architecture principles with proper separation of concerns, 
-            automated deployment pipelines, and comprehensive monitoring solutions.
+            automated deployment pipelines, and comprehensive monitoring solutions.<br/>
           </p>
           <p>
             Key features include responsive design, component-based architecture, and integration with various 
             backend services for contact forms and scheduling functionality. The entire system is containerized 
             and deployed using CI/CD practices with infrastructure as code.
           </p>
+        </div>
+
+        <div className="flowchart-section">   
+          <div className="flowchart-container">
+            <div className="flowchart-image-wrapper">
+              <h3>📊 System Architecture Flowchart</h3>
+              <img 
+                src="/system-architecture.svg" 
+                alt="System Architecture Flowchart"
+                className="flowchart-image"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="projects-section">

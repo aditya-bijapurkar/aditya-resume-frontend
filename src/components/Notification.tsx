@@ -30,7 +30,12 @@ const Notification: React.FC<NotificationProps> = ({
   return (
     <div className={`notification notification-${type}`}>
       <div className="notification-content">
-        <span className="notification-message">{message}</span>
+        <span className="notification-message">{message.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {line}
+            {index < message.split('\n').length - 1 && <br />}
+          </React.Fragment>
+        ))}</span>
         <button className="notification-close" onClick={onClose}>×</button>
       </div>
     </div>
