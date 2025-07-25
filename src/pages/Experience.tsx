@@ -5,42 +5,40 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       id: 1,
-      company: 'Tech Company Inc.',
-      position: 'Senior Full-Stack Developer',
-      period: '2022 - Present',
-      description: 'Leading development of enterprise web applications using React, Node.js, and cloud technologies.',
+      company: 'AiDash',
+      position: 'SDE 1',
+      period: '2024 Nov - Present',
+      description: 'Backend Developer at AiDash, designing and developing scalable backend systems using Java SpringBoot and Python Django.',
       achievements: [
-        'Led a team of 5 developers in building a customer portal',
-        'Improved application performance by 40%',
-        'Implemented CI/CD pipeline reducing deployment time by 60%'
+        'Developed an asynchronous multi-threaded architecture to scale task creation from 10 to 14k+ tasks.',
+        'Implemented log tracing in over 6 microserices, streamlining debugging throughout the process lifeline.',
+        'Created Prometheus metrics and alerts on 7+ services and built Graphana dashboards for monitoring.',
+        'Streamlined process of Lambda functions deployment by writing MAKE commands and creating a pipeline.',
+        'Achieved 70% reduction in database search-space by decoupling IVMS application from legacy frameworks.',
       ],
-      technologies: ['React', 'Node.js', 'AWS', 'Docker']
+      technologies: ['SpringBoot', 'Django', 'AWS', 'Docker', 'Kubernetes']
     },
     {
       id: 2,
-      company: 'StartupXYZ',
-      position: 'Frontend Developer',
-      period: '2020 - 2022',
-      description: 'Developed responsive web applications and improved user experience across multiple platforms.',
+      company: 'AiDash',
+      position: 'SDE Intern',
+      period: '2024 Apr - 2024 Nov',
+      description: 'Worked on BNG-AI project, created GraphQL APIs and streamlined the process of data ingestion to the application.',
       achievements: [
-        'Built 3 major features from concept to deployment',
-        'Reduced page load time by 30%',
-        'Mentored junior developers and conducted code reviews'
+        'Reduced 95% of the manual effort for the site ingestion process by architecting an orchestration system.',
+        'Developed Bspoke compliance backend engine using Java SpringBoot in just 2 weeks with testcases and documentation.',
+        'Worked on GraphQL API schema designing and development for over 20+ endpoints'
       ],
-      technologies: ['React', 'TypeScript', 'Redux', 'Sass']
+      technologies: ['Java', 'GraphQL', 'REST', 'PostgreSQL']
     },
     {
       id: 3,
-      company: 'Digital Agency',
-      position: 'Web Developer',
-      period: '2018 - 2020',
-      description: 'Created custom websites and e-commerce solutions for various clients.',
-      achievements: [
-        'Delivered 20+ client projects on time and budget',
-        'Developed reusable component library',
-        'Implemented SEO best practices across all projects'
-      ],
-      technologies: ['JavaScript', 'PHP', 'WordPress', 'MySQL']
+      company: 'Akto.io',
+      position: 'Backend Developer Intern',
+      period: '2024 Mar - 2024 Apr',
+      description: 'Worked on API security and threat detection with Akto.io as a backend developer intern.',
+      achievements: [],
+      technologies: ['Node.js', 'Java', 'React.js', 'Postman']
     }
   ];
 
@@ -72,12 +70,20 @@ const Experience: React.FC = () => {
                 <p className="experience-description">{experience.description}</p>
                 
                 <div className="experience-achievements">
-                  <h5>Key Achievements:</h5>
-                  <ul>
-                    {experience.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex}>{achievement}</li>
-                    ))}
-                  </ul>
+                  {
+                    experience.achievements.length > 0 ? (
+                      <>
+                      <h5>Key Achievements:</h5>
+                      <ul>
+                        {experience.achievements.map((achievement, achievementIndex) => (
+                          <li key={achievementIndex}>{achievement}</li>
+                        ))}
+                      </ul>
+                      </>
+                    ) : (
+                      <></>
+                    )
+                  }
                 </div>
               </div>
             </div>
@@ -87,10 +93,10 @@ const Experience: React.FC = () => {
         <div className="experience-summary">
           <h3>Career Summary</h3>
           <p>
-            Over the past 5+ years, I've worked across various industries and 
-            technologies, always focusing on delivering high-quality, scalable 
-            solutions. I've grown from a junior developer to a senior role, 
-            leading teams and mentoring others along the way.
+            Over the past 1.5+ years I have worked on 2 projects, delivering scalable backend solutions for asset management and compliance.<br/>
+            I have experience in developing and architecting microservices in Java SpringBoot and Python Django while maintaining high code quality and test coverage.<br/>
+            I have deep knowledge about RDBMS (postgres) and NoSQL (mongo) databases and have worked on them extensively.<br/>
+            Maintaining high quality code and streamlining the deployment process on AWS has been a top priority for me.<br/>
           </p>
         </div>
       </div>

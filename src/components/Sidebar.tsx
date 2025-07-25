@@ -6,8 +6,8 @@ const Sidebar: React.FC = () => {
   const navItems = [
     { path: '/', label: 'Home', icon: '🏠' },
     { path: '/details', label: 'Projcet Details', icon: '🚧'},
-    { path: '/skills', label: 'Skills', icon: '🛠️' },
     { path: '/experience', label: 'Experience', icon: '📈' },
+    { path: '/skills', label: 'Skills', icon: '🛠️' },
     { path: '/contact', label: 'Contact', icon: '📧' },
   ];
 

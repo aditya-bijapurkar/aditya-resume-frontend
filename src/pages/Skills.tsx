@@ -4,16 +4,6 @@ import './Pages.css';
 const Skills: React.FC = () => {
   const skillCategories = [
     {
-      category: 'Frontend Development',
-      skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'JavaScript', level: 90 },
-        { name: 'HTML/CSS', level: 95 },
-        { name: 'Vue.js', level: 75 }
-      ]
-    },
-    {
       category: 'Backend Development',
       skills: [
         { name: 'Node.js', level: 85 },
@@ -21,6 +11,16 @@ const Skills: React.FC = () => {
         { name: 'Express.js', level: 85 },
         { name: 'MongoDB', level: 75 },
         { name: 'PostgreSQL', level: 70 }
+      ]
+    },
+    {
+      category: 'Frontend Development',
+      skills: [
+        { name: 'React', level: 90 },
+        { name: 'TypeScript', level: 85 },
+        { name: 'JavaScript', level: 90 },
+        { name: 'HTML/CSS', level: 95 },
+        { name: 'Vue.js', level: 75 }
       ]
     },
     {
@@ -59,13 +59,6 @@ const Skills: React.FC = () => {
                   <div key={skillIndex} className="skill-item">
                     <div className="skill-header">
                       <span className="skill-name">{skill.name}</span>
-                      <span className="skill-level">{skill.level}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
                     </div>
                   </div>
                 ))}

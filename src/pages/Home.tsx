@@ -36,9 +36,11 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div className="hero-image">
-            <div className="placeholder-image">
-              <span>img</span>
-            </div>
+            <img 
+              src="/aditya-face.jpg" 
+              alt="Aditya Bijapurkar" 
+              className="profile-image"
+            />
           </div>
         </div>
       </div>
