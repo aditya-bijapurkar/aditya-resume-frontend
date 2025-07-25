@@ -50,6 +50,17 @@ const Experience: React.FC = () => {
       </div>
       
       <div className="page-content">
+        
+        <div className="experience-summary">
+          <h3>Career Summary</h3>
+          <p>
+            Over the past 1.5+ years I have worked on 2 projects, delivering scalable backend solutions for asset management and compliance.<br/>
+            I have experience in developing and architecting microservices in Java SpringBoot and Python Django while maintaining high code quality and test coverage.<br/>
+            I have deep knowledge about RDBMS (postgres) and NoSQL (mongo) databases and have worked on them extensively.<br/>
+            Maintaining high quality code and streamlining the deployment process on AWS has been a top priority for me.<br/>
+          </p>
+        </div>
+
         <div className="experience-timeline">
           {experiences.map((experience, index) => (
             <div key={experience.id} className="experience-item">
@@ -90,15 +101,6 @@ const Experience: React.FC = () => {
           ))}
         </div>
         
-        <div className="experience-summary">
-          <h3>Career Summary</h3>
-          <p>
-            Over the past 1.5+ years I have worked on 2 projects, delivering scalable backend solutions for asset management and compliance.<br/>
-            I have experience in developing and architecting microservices in Java SpringBoot and Python Django while maintaining high code quality and test coverage.<br/>
-            I have deep knowledge about RDBMS (postgres) and NoSQL (mongo) databases and have worked on them extensively.<br/>
-            Maintaining high quality code and streamlining the deployment process on AWS has been a top priority for me.<br/>
-          </p>
-        </div>
       </div>
     </div>
   );

@@ -6,33 +6,36 @@ const Skills: React.FC = () => {
     {
       category: 'Backend Development',
       skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Python', level: 80 },
-        { name: 'Express.js', level: 85 },
-        { name: 'MongoDB', level: 75 },
-        { name: 'PostgreSQL', level: 70 }
+        { name: 'Java SpringBoot' },
+        { name: 'Python Django' },
+        { name: 'Node.js' },
+        { name: 'Golang' },
+        { name: 'GraphQL' },
+        { name: 'REST' },
       ]
     },
     {
-      category: 'Frontend Development',
+      category: 'Database Management & Tools',
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'JavaScript', level: 90 },
-        { name: 'HTML/CSS', level: 95 },
-        { name: 'Vue.js', level: 75 }
+        { name: 'PostgreSQL' },
+        { name: 'MongoDB' },
+        { name: 'PL/SQL' },
+        { name: 'Kubernetes' },
+        { name: 'Docker' },
+        { name: 'Git' },
       ]
     },
     {
-      category: 'Tools & Technologies',
+      category: 'Top 6 AWS Services',
       skills: [
-        { name: 'Git', level: 90 },
-        { name: 'Docker', level: 70 },
-        { name: 'AWS', level: 65 },
-        { name: 'Firebase', level: 80 },
-        { name: 'Webpack', level: 75 }
+        { name: 'EC2' },
+        { name: 'Lambda' },
+        { name: 'S3' }, 
+        { name: 'SQS' },
+        { name: 'Secrets Manager' },
+        { name: 'Application Gateway' },
       ]
-    }
+    },
   ];
 
   return (
@@ -70,14 +73,15 @@ const Skills: React.FC = () => {
         <div className="additional-skills">
           <h3>Additional Skills</h3>
           <div className="skills-tags">
-            <span className="skill-tag">RESTful APIs</span>
-            <span className="skill-tag">GraphQL</span>
-            <span className="skill-tag">Responsive Design</span>
-            <span className="skill-tag">UI/UX Design</span>
-            <span className="skill-tag">Agile/Scrum</span>
-            <span className="skill-tag">Testing</span>
-            <span className="skill-tag">Performance Optimization</span>
-            <span className="skill-tag">SEO</span>
+            <span className="skill-tag">React.js</span>
+            <span className="skill-tag">Prometheus</span>
+            <span className="skill-tag">Graphana</span>
+            <span className="skill-tag">Jenkins</span>
+            <span className="skill-tag">CI/CD</span>
+            <span className="skill-tag">Microservices</span>
+            <span className="skill-tag">Multithreading</span>
+            <span className="skill-tag">Authentication</span>
+            <span className="skill-tag">Debugging</span>
           </div>
         </div>
       </div>
