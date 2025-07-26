@@ -1,5 +1,3 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
 export interface ContactFormData {
   name: string;
   emailId: string;
@@ -10,7 +8,7 @@ export interface ContactFormData {
 export const emailService = {
   async sendContactEmail(formData: ContactFormData): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/contact/send`, {
+      const response = await fetch(`/contact/send`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

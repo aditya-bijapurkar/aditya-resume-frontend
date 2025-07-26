@@ -1,5 +1,3 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
 export interface TimeSlot {
   time: string;
   available: boolean;
@@ -20,7 +18,7 @@ export interface BookingRequest {
 export const scheduleService = {
   async getAvailability(date: string): Promise<TimeSlot[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/schedule/meet/availability?date=${date}`);
+      const response = await fetch(`/schedule/meet/availability?date=${date}`);
       const data = await response.json();
       console.log(data);
       const availableSlots = data.data.availableSlots;
@@ -44,7 +42,7 @@ export const scheduleService = {
 
   async initiateMeeting(booking: BookingRequest): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`${API_BASE_URL}/schedule/meet/initiate`, {
+      const response = await fetch(`/schedule/meet/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
