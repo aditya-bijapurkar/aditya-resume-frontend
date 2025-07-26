@@ -339,7 +339,7 @@
   text-align: center;
 }
 
-.project-card {
+.project-card-done {
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -347,20 +347,51 @@
   transition: transform 0.3s ease;
 }
 
-.project-card:hover {
+.project-card-todo {
+  background: rgb(247, 218, 218);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card-done:hover {
   transform: translateY(-5px);
 }
 
-.project-image {
+.project-card-todo:hover {
+  transform: translateY(-5px);
+}
+
+.project-image-container {
   height: 200px;
   background: linear-gradient(135deg, #5e88d7 0%, #585ad3 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .project-icon {
-  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.project-image {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.05);
 }
 
 .project-content {

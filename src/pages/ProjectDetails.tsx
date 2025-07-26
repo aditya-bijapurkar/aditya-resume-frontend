@@ -6,62 +6,70 @@ const ProjectDetails: React.FC = () => {
     {
       id: 1,
       title: 'Microservices Architecture Platform',
-      description: 'Designed and implemented a scalable microservices platform using Spring Boot, Spring Cloud, and Docker. Features include service discovery, API gateway, and distributed tracing.',
-      technologies: ['Spring Boot', 'Spring Cloud', 'Docker', 'Kubernetes', 'PostgreSQL'],
-      image: '🏗️',
-      link: '#',
-      repoLink: 'https://github.com/yourusername/microservices-platform',
-      explanation: 'This project demonstrates a complete microservices architecture with service discovery using Eureka, API gateway with Zuul, and distributed tracing with Sleuth. The platform handles high traffic with load balancing and circuit breakers.'
+      description: 'Designed and implemented a scalable microservices platform using Spring Boot and Docker. Features include multithreading, API controller, prometheus monitoring, and distributed tracing.',
+      technologies: ['Spring Boot', 'Java', 'JPA-Repo','Prometheus', 'Docker', 'PostgreSQL'],
+      image: {
+        src: '/project/spring.png',
+        alt: 'Spring Boot',
+      }, 
+      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-backend',
+      action: 'done'
     },
     {
       id: 2,
       title: 'AWS Infrastructure Automation',
       description: 'Built comprehensive infrastructure as code using Terraform and AWS services including Route53, EC2, RDS, and CloudFormation for automated deployment and scaling.',
       technologies: ['AWS', 'Terraform', 'Route53', 'EC2', 'RDS', 'CloudFormation'],
-      image: '☁️',
-      link: '#',
-      repoLink: 'https://github.com/yourusername/aws-infrastructure',
-      explanation: 'Infrastructure as Code implementation using Terraform to provision and manage AWS resources. Includes automated DNS management with Route53, database provisioning with RDS, and auto-scaling EC2 instances.'
+      image: {
+        src: '/project/aws.png',
+        alt: 'AWS',
+      }, 
+      action: 'done'
     },
     {
       id: 3,
-      title: 'High-Performance REST API',
-      description: 'Developed a RESTful API with Spring Boot, JPA/Hibernate, and PostgreSQL. Implemented caching with Redis, rate limiting, and comprehensive monitoring.',
-      technologies: ['Spring Boot', 'JPA/Hibernate', 'PostgreSQL', 'Redis', 'Docker'],
-      image: '⚡',
-      link: '#',
-      repoLink: 'https://github.com/yourusername/high-performance-api',
-      explanation: 'Optimized REST API with connection pooling, Redis caching for frequently accessed data, and rate limiting to prevent abuse. Includes comprehensive API documentation with Swagger and health checks.'
+      title: 'React-ive Frontend Interface',
+      description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services for contact forms and scheduling functionality.',
+      technologies: ['React', 'TypeScript', 'CSS3', 'React Router', 'React Hooks'],
+      image: {
+        src: '/project/react.jpeg',
+        alt: 'React Txs',
+      }, 
+      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-frontend',
+      action: 'done'
     },
     {
       id: 4,
-      title: 'Database Migration & Optimization',
-      description: 'Led database migration from legacy system to PostgreSQL with performance optimization, indexing strategies, and data integrity validation.',
-      technologies: ['PostgreSQL', 'Flyway', 'Spring Data JPA', 'AWS RDS'],
-      image: '🗄️',
-      link: '#',
-      repoLink: 'https://github.com/yourusername/db-migration-tool',
-      explanation: 'Database migration tool using Flyway for version control of schema changes. Includes performance optimization scripts, automated backup strategies, and data validation procedures.'
+      title: 'Docker Containerization and Deployment',
+      description: 'Containerized the application using Docker to ensure consistent deployment across different environments. Implemented Docker Compose for easy orchestration of multiple containers.',
+      technologies: ['Docker', 'Docker Compose', 'Dockerfile', 'CI/CD'],
+      image: {
+        src: '/project/docker.png',
+        alt: 'Docker',
+      },
+      action: 'done'
     },
     {
       id: 5,
-      title: 'CI/CD Pipeline with AWS',
-      description: 'Implemented end-to-end CI/CD pipeline using AWS CodePipeline, CodeBuild, and CodeDeploy with automated testing and deployment strategies.',
-      technologies: ['AWS CodePipeline', 'CodeBuild', 'CodeDeploy', 'Docker', 'Spring Boot'],
-      image: '🔄',
-      link: '#',
-      repoLink: 'https://github.com/yourusername/cicd-pipeline',
-      explanation: 'Automated deployment pipeline that builds, tests, and deploys applications to multiple environments. Includes automated testing, security scanning, and rollback capabilities.'
+      title: 'Monitoring & Observability Platform',
+      description: 'Implemented prometheus custom metrics in Spring Application to enable easy monitoring and alerting. TODO - Adding Graphana Dashboards and Alerting to integrate with the website to send email alerts.',
+      technologies: ['Prometheus', 'Grafana', 'Monitoring', 'Alerting', 'Actuator'],
+      image: {
+        src: '/project/prometheus.png',
+        alt: 'Prometheus',
+      },  
+      action: 'todo'
     },
     {
       id: 6,
-      title: 'Monitoring & Observability Platform',
-      description: 'Built comprehensive monitoring solution with AWS CloudWatch, custom metrics, logging aggregation, and alerting systems for production environments.',
-      technologies: ['AWS CloudWatch', 'Spring Boot Actuator', 'ELK Stack', 'Prometheus'],
-      image: '📊',
-      link: '#',
-      repoLink: '#',
-      explanation: 'Centralized monitoring and logging solution with custom dashboards, automated alerting, and log aggregation. Provides real-time insights into application performance and system health.'
+      title: 'Authentication & Authorization',
+      description: 'TODO - Add lambda authentication and authorization functionality to the website to prevent unauthorized access and DDOS attacks to the website. Implementing user-management module for subscription based access to the website.',
+      technologies: ['AWS Lambda', 'Auth-service', 'AWS API Gateway', 'AWS S3'],
+      image: {
+        src: '/project/incognito.png',
+        alt: 'Incognito',
+      },      
+      action: 'todo'
     }
   ];
 
@@ -108,37 +116,41 @@ const ProjectDetails: React.FC = () => {
           <h2>Technical Implementation Details</h2>
           <div className="projects-grid">
             {projects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-image">
-                  <span className="project-icon">{project.image}</span>
+              <div key={project.id} className={`project-card-${project.action}`}>
+                <div className="project-image-container">
+                  <span className="project-icon">
+                    <img src={project.image.src} alt={project.image.alt} className="project-image" />
+                  </span>
                 </div>
                 <div className="project-content">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
-                  <div className="project-explanation">
-                    <p><strong>How it works:</strong> {project.explanation}</p>
-                  </div>
                   <div className="project-technologies">
                     {project.technologies.map((tech, index) => (
                       <span key={index} className="tech-tag">{tech}</span>
                     ))}
                   </div>
-                  <div className="project-actions">
-                    <a 
-                      href={project.repoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`btn btn-secondary ${project.repoLink === '#' ? 'disabled' : ''}`}
-                      style={{ pointerEvents: project.repoLink === '#' ? 'none' : 'auto' }}
-                    >
-                      Repository Link
-                    </a>
-                  </div>
+                  {
+                    project.repoLink && (
+                      <div className="project-actions">
+                        <a 
+                          href={project.repoLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`btn btn-secondary ${project.repoLink === '#' ? 'disabled' : ''}`}
+                          style={{ pointerEvents: project.repoLink === '#' ? 'none' : 'auto' }}
+                        >
+                          Repository Link
+                        </a>
+                      </div>   
+                    )
+                  }
                 </div>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
