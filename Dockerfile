@@ -3,6 +3,9 @@ FROM node:18-alpine as build
 ARG REACT_APP_API_BASE_URL
 ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
+ENV NODE_OPTIONS="--max-old-space-size=1024"
+ENV GENERATE_SOURCEMAP=false
+
 WORKDIR /app
 
 COPY package*.json ./
