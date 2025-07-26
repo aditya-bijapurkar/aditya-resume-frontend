@@ -18,8 +18,8 @@ const ProjectDetails: React.FC = () => {
     {
       id: 2,
       title: 'AWS Infrastructure Automation',
-      description: 'Built comprehensive infrastructure as code using Terraform and AWS services including Route53, EC2, RDS, and CloudFormation for automated deployment and scaling.',
-      technologies: ['AWS', 'Terraform', 'Route53', 'EC2', 'RDS', 'CloudFormation'],
+      description: 'Built comprehensive infrastructure as code using AWS services including Route53, EC2, ACM, RDS, and CloudFront for deployment and scaling.',
+      technologies: ['AWS', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront'],
       image: {
         src: '/project/aws.png',
         alt: 'AWS',
@@ -29,7 +29,7 @@ const ProjectDetails: React.FC = () => {
     {
       id: 3,
       title: 'React-ive Frontend Interface',
-      description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services for contact forms and scheduling functionality.',
+      description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services using reverse proxy.',
       technologies: ['React', 'TypeScript', 'CSS3', 'React Router', 'React Hooks'],
       image: {
         src: '/project/react.jpeg',
