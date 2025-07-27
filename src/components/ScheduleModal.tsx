@@ -179,7 +179,7 @@ const [notification, setNotification] = useState<{
           {selectedDate && (
             <>
             <div className="time-selection">
-              <h3>Available Time Slots for {selectedDate}</h3>
+              <h3>Available Time Slots for {selectedDate} (IST)</h3>
               {loading ? (
                 <div className="loading">Loading available slots...</div>
               ) : (
