@@ -11,26 +11,18 @@ import './App.css';
 const ThemeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
 
-  useEffect(() => {
-    const setTheme = (theme: 'light' | 'dark') => {
-      document.documentElement.setAttribute('data-theme', theme);
-      setIsDark(theme === 'dark');
-    };
+  const setTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.setAttribute('data-theme', theme);
+    setIsDark(theme === 'dark');
+  };
 
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    
-    if (savedTheme) {      
-      setTheme(savedTheme);
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark ? 'dark' : 'light');
-    }
+  useEffect(() => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light');
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleThemeChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'dark' : 'light');
-      }
+    const handleThemeChange = (e: MediaQueryListEvent) => { 
+      setTheme(e.matches ? 'dark' : 'light');
     };
 
     mediaQuery.addEventListener('change', handleThemeChange);
@@ -41,10 +33,9 @@ const ThemeToggle: React.FC = () => {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = isDark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    setIsDark(!isDark);
-    localStorage.setItem('theme', newTheme);
+    console.log("prev: ", isDark);
+    setTheme(!isDark ? 'dark' : 'light');
+    console.log("after: ", !isDark);
   };
 
   return (
