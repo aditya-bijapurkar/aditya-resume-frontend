@@ -75,7 +75,6 @@
   }
 }
 
-/* Enhanced Responsive Design */
 @media (max-width: 1024px) {
   .notification {
     max-width: 350px;
