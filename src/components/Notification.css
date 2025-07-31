@@ -6,7 +6,7 @@
   min-width: 300px;
   max-width: 400px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow);
   animation: slideIn 0.3s ease-out;
 }
 
@@ -40,28 +40,29 @@
   transition: background-color 0.2s;
   min-height: 44px;
   min-width: 44px;
+  color: var(--text-primary);
 }
 
 .notification-close:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-tertiary);
 }
 
 .notification-success {
-  background-color: #d4edda;
-  border: 1px solid #c3e6cb;
-  color: #155724;
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-text);
+  color: var(--success-text);
 }
 
 .notification-error {
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-text);
+  color: var(--error-text);
 }
 
 .notification-info {
-  background-color: #d1ecf1;
-  border: 1px solid #bee5eb;
-  color: #0c5460;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-primary);
+  color: var(--text-primary);
 }
 
 @keyframes slideIn {
