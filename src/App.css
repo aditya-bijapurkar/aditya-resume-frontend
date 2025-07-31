@@ -13,13 +13,13 @@ body {
   background-color: #f8f9fa;
   color: #333;
   line-height: 1.6;
+  font-size: 16px;
 }
 
 .App {
   min-height: 100vh;
 }
 
-/* Global styles */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
@@ -36,9 +36,46 @@ a {
 
 button {
   cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
 }
 
-/* Scrollbar styling */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: 1.6rem !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -54,4 +91,98 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}
+
+@media (max-width: 768px) {
+  button, a, input, textarea {
+    min-height: 44px;
+  }
+  
+  .container, .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .page-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .hero-section {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quick-stats {
+    margin-top: 1.5rem;
+  }
+  
+  .modal-content {
+    max-height: 85vh;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 12px;
+  }
+  
+  .page {
+    padding: 0 0.25rem;
+  }
+  
+  .hero-text h2 {
+    font-size: 1.4rem !important;
+  }
+  
+  .hero-text h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .hero-text p {
+    font-size: 0.9rem !important;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .placeholder-image {
+    width: 120px;
+    height: 120px;
+    font-size: 3rem;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .profile-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .page {
+    background-color: #1a1a1a;
+  }
 }

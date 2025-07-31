@@ -10,6 +10,7 @@
   align-items: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  padding: 1rem;
 }
 
 .modal-content {
@@ -51,6 +52,8 @@
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .close-button:hover {
@@ -80,6 +83,7 @@
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  min-height: 44px;
 }
 
 .date-selection input:focus {
@@ -187,9 +191,9 @@
   margin-top: 1rem;
   padding: 1rem;
   font-size: 1rem;
+  min-height: 44px;
 }
 
-/* User Details Section */
 .user-details-section {
   margin-bottom: 2rem;
 }
@@ -230,6 +234,8 @@
   cursor: pointer;
   font-size: 0.8rem;
   transition: background-color 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .remove-user-btn:hover {
@@ -263,6 +269,7 @@
   font-size: 1rem;
   transition: border-color 0.3s ease;
   box-sizing: border-box;
+  min-height: 44px;
 }
 
 .form-group input:focus {
@@ -280,13 +287,13 @@
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
+  min-height: 44px;
 }
 
 .add-user-btn:hover {
   background: #5a6268;
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -307,11 +314,37 @@
   }
 }
 
-/* Responsive Design */
+@media (max-width: 1024px) {
+  .modal-content {
+    max-width: 600px;
+  }
+  
+  .time-slots {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+  
   .modal-content {
     width: 95%;
-    margin: 1rem;
+    margin: 0;
+    max-height: 90vh;
+  }
+  
+  .modal-header {
+    padding: 1rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .modal-body {
+    padding: 1rem;
   }
   
   .time-slots {
@@ -322,14 +355,92 @@
   .time-slot {
     padding: 0.5rem;
     font-size: 0.8rem;
-    min-height: 40px;
+    min-height: 44px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .user-form {
+    padding: 1rem;
+  }
+  
+  .booking-summary {
+    padding: 1rem;
+  }
+  
+  .book-button {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0.25rem;
+  }
+  
+  .modal-content {
+    width: 98%;
+    max-height: 95vh;
   }
   
   .modal-header {
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.2rem;
   }
   
   .modal-body {
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .time-slots {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.4rem;
+  }
+  
+  .time-slot {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+    min-height: 44px;
+  }
+  
+  .time-slot .available-text,
+  .time-slot .unavailable-text {
+    font-size: 0.6rem;
+  }
+  
+  .user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .remove-user-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .form-group input {
+    font-size: 16px;
+  }
+  
+  .date-selection input {
+    font-size: 16px;
+  }
+  
+  .book-button {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .add-user-btn {
+    padding: 0.75rem;
+    font-size: 0.9rem;
   }
 } 
