@@ -33,7 +33,7 @@ jobs:
           sudo docker pull docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
 
           echo "restarting the application (frontend only)"
-          sudo docker-compose up -d frontend --no-deps
+          sudo docker-compose up -d --no-deps frontend
 
           echo "removing all stopped containers"
           sudo docker container prune -f
