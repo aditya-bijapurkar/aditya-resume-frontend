@@ -17,13 +17,14 @@ const ProjectDetails: React.FC = () => {
     },
     {
       id: 2,
-      title: 'AWS Infrastructure Automation',
-      description: 'Built comprehensive infrastructure as code using AWS services including Route53, EC2, ACM, RDS, and CloudFront for deployment and scaling.',
-      technologies: ['AWS', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront'],
+      title: 'Docker Containerization and CI / DC',
+      description: 'Created CI / CD pipelines using Github Actions for the application to build, test and deploy to the Docker Hub. Also used Docker Compose to orchestrate the containers on live EC2 instances.',
+      technologies: ['Docker', 'Docker Compose', 'Dockerfile', 'Github Actions', 'Docker Hub', 'CI/CD'],
       image: {
-        src: '/project/aws.png',
-        alt: 'AWS',
-      }, 
+        src: '/project/docker.webp',
+        alt: 'Docker',
+      },
+      repoLink: 'https://hub.docker.com/repositories/adityabijapurkar',
       action: 'done'
     },
     {
@@ -40,13 +41,13 @@ const ProjectDetails: React.FC = () => {
     },
     {
       id: 4,
-      title: 'Docker Containerization and Deployment',
-      description: 'Containerized the application using Docker to ensure consistent deployment across different environments. Implemented Docker Compose for easy orchestration of multiple containers.',
-      technologies: ['Docker', 'Docker Compose', 'Dockerfile', 'CI/CD'],
+      title: 'AWS Infrastructure',
+      description: 'Built comprehensive infrastructure as code using AWS services including Route53, EC2, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
+      technologies: ['AWS', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront', 'SES'],
       image: {
-        src: '/project/docker.png',
-        alt: 'Docker',
-      },
+        src: '/project/aws.png',
+        alt: 'AWS',
+      }, 
       action: 'done'
     },
     {
