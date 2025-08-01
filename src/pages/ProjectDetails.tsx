@@ -105,7 +105,7 @@ const ProjectDetails: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/system-architecture.svg" 
+                src="/systemarchitecture.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
