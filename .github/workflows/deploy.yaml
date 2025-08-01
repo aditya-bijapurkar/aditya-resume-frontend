@@ -1,0 +1,20 @@
+name: Deploy to EC2 from FE
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build and push to Docker image to aditya-resume-frontend
+      run: |
+        IMAGE_NAME=docker.io/adityabijapurkar/aditya-resume-frontend:latest
+        docker build -t $IMAGE_NAME .
+        docker push $IMAGE_NAME
