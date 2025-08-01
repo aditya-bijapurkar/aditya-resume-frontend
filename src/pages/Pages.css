@@ -298,6 +298,7 @@
   box-shadow: var(--hover-shadow);
   border: 1px solid var(--border-color);
   margin: 1rem 0;
+  background-color: white;
 }
 
 .flowchart-caption {

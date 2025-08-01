@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
 import Notification from './Notification';
 import './ScheduleModal.css';
@@ -171,6 +171,7 @@ const [notification, setNotification] = useState<{
               id="date-picker"
               value={selectedDate}
               onChange={(e) => handleDateChange(e.target.value)}
+              onClick={(e) => e.currentTarget.showPicker()}
               min={getMinDate()}
               max={getMaxDate()}
             />

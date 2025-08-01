@@ -1,4 +1,3 @@
-# Build stage - use smallest Node.js image
 FROM node:16-alpine AS build
 
 ENV NODE_OPTIONS="--max-old-space-size=512"
