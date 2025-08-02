@@ -36,24 +36,31 @@ const Sidebar: React.FC = () => {
       )}
 
       <div className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-        <div className="sidebar-header">
-          <h2>Portfolio</h2>
+        <div className="sidebar-content">
+          <div className="sidebar-main-content">
+            <div className="sidebar-header">
+              <h2>Portfolio</h2>
+            </div>
+            <nav className="sidebar-nav">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) => 
+                    `nav-item ${isActive ? 'active' : ''}`
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-label">{item.label}</span>
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+          <div className="sidebar-footer">
+            <p>© 2025. All rights reserved.</p>
+          </div>
         </div>
-        <nav className="sidebar-nav">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) => 
-                `nav-item ${isActive ? 'active' : ''}`
-              }
-              onClick={closeMobileMenu}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-label">{item.label}</span>
-            </NavLink>
-          ))}
-        </nav>
       </div>
     </>
   );
