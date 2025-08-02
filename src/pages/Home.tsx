@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   const [notification, setNotification] = useState<NotificationInterface>({
     message: '',
     type: 'info',
-    isVisible: true
+    isVisible: false
   });
 
   const handleScheduleCall = () => {
