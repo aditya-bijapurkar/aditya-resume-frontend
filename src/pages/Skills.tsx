@@ -32,11 +32,17 @@ const Skills: React.FC = () => {
         { name: 'Lambda' },
         { name: 'S3' }, 
         { name: 'SQS' },
-        { name: 'Secrets Manager' },
+        { name: 'Cloudfront CDN' },
         { name: 'Application Gateway' },
       ]
     },
   ];
+
+  const additionalSkills = [
+    'Github Actions', 'React.js', 'Prometheus', 
+    'Graphana', 'Jenkins', 'CI/CD', 'Microservices', 
+    'Authentication', 'Secrets Manager'
+  ]
 
   return (
     <div className="page">
@@ -73,15 +79,11 @@ const Skills: React.FC = () => {
         <div className="additional-skills">
           <h3>Additional Skills</h3>
           <div className="skills-tags">
-            <span className="skill-tag">React.js</span>
-            <span className="skill-tag">Prometheus</span>
-            <span className="skill-tag">Graphana</span>
-            <span className="skill-tag">Jenkins</span>
-            <span className="skill-tag">CI/CD</span>
-            <span className="skill-tag">Microservices</span>
-            <span className="skill-tag">Multithreading</span>
-            <span className="skill-tag">Authentication</span>
-            <span className="skill-tag">Debugging</span>
+            {
+              additionalSkills.map((skill, index) => (
+                <span key={index} className='skill-tag'>{skill}</span>
+              ))
+            }
           </div>
         </div>
       </div>

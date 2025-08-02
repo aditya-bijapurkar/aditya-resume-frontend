@@ -5,8 +5,8 @@ import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-import ProjectDetails from './pages/ProjectDetails';
 import './App.css';
+import BuildDeploy from './pages/BuildDeploy';
 
 const ThemeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -63,10 +63,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="details" element={<BuildDeploy />} />
             <Route path="experience" element={<Experience />} />
             <Route path="skills" element={<Skills />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="details" element={<ProjectDetails />} />
           </Route>
         </Routes>
       </div>

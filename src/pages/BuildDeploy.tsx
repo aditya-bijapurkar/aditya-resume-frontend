@@ -1,7 +1,7 @@
 import React from 'react';
 import './Pages.css';
 
-const ProjectDetails: React.FC = () => {
+const BuildDeploy: React.FC = () => {
   const projects = [
     {
       id: 1,
@@ -21,7 +21,7 @@ const ProjectDetails: React.FC = () => {
       description: 'Created CI / CD pipelines using Github Actions for the application to build, test and deploy to the Docker Hub. Also used Docker Compose to orchestrate the containers on live EC2 instances.',
       technologies: ['Docker', 'Docker Compose', 'Dockerfile', 'Github Actions', 'Docker Hub', 'CI/CD'],
       image: {
-        src: '/project/docker.webp',
+        src: '/project/docker-cicd.png',
         alt: 'Docker',
       },
       repoLink: 'https://hub.docker.com/repositories/adityabijapurkar',
@@ -157,4 +157,4 @@ const ProjectDetails: React.FC = () => {
   );
 };
 
-export default ProjectDetails; 
+export default BuildDeploy; 
