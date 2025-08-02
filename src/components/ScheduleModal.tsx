@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
-import Notification from './Notification';
 import './ScheduleModal.css';
+import { NotificationInterface } from './props/NotificationInterface';
 
 interface ScheduleModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setNotification: (notification: NotificationInterface) => void;
 }
 
-const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
+const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotification }) => {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [selectedTime, setSelectedTime] = useState<string>('');
@@ -17,15 +18,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose }) => {
   const [userDetails, setUserDetails] = useState<UserDetails[]>([
     { firstName: '', lastName: '', emailId: '' }
   ]);
-const [notification, setNotification] = useState<{
-    message: string;
-    type: 'success' | 'error' | 'info';
-    isVisible: boolean;
-  }>({
-    message: '',
-    type: 'info',
-    isVisible: false
-  });
 
   const resetForm = () => {
     setSelectedDate('');
@@ -100,10 +92,6 @@ const [notification, setNotification] = useState<{
     });
   };
 
-  const hideNotification = () => {
-    setNotification(prev => ({ ...prev, isVisible: false }));
-  };
-
   const handleSubmit = async () => {
     if (selectedDate && selectedTime && userDetails.length > 0) {
       const validUsers = userDetails.filter(user => 
@@ -124,13 +112,17 @@ const [notification, setNotification] = useState<{
         
         if (result.success) {
           showNotification(result.message, 'success');
-          resetForm();
-        } else {
+        }
+        else {
           showNotification('Failed to book slot. Please try again.', 'error');
         }
-      } catch (error) {
+      }
+      catch (error) {
         console.error('Error booking slot:', error);
         showNotification('Failed to book slot. Please try again.', 'error');
+      }
+      finally {
+        closeModal();
       }
     }
   };
@@ -150,12 +142,6 @@ const [notification, setNotification] = useState<{
 
   return (
     <>
-      <Notification
-        message={notification.message}
-        type={notification.type}
-        isVisible={notification.isVisible}
-        onClose={hideNotification}
-      />
       <div className="modal-overlay" onClick={closeModal}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">

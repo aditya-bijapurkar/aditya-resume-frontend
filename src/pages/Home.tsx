@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import ScheduleModal from '../components/ScheduleModal';
 import './Pages.css';
+import Notification from '../components/Notification';
+import { NotificationInterface } from '../components/props/NotificationInterface';
 
 const Home: React.FC = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [notification, setNotification] = useState<NotificationInterface>({
+    message: '',
+    type: 'info',
+    isVisible: true
+  });
 
   const handleScheduleCall = () => {
     setIsModalOpen(true);
@@ -14,12 +21,25 @@ const Home: React.FC = () => {
     setIsModalOpen(false);
   }
 
+  const showNotification = () => {
+    return (
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        isVisible={notification.isVisible}
+        onClose={() => setNotification({...notification, isVisible: false})}
+      />
+    )
+  }
+
   return (
     <div className="page">
       <div className="page-header">
         <h1>Aditya Bijapurkar</h1>
         <p className="subtitle">Personal Portfolio Website</p>
       </div>
+
+      {showNotification()}
       
       <div className="page-content">
         <div className="hero-section">
@@ -48,6 +68,7 @@ const Home: React.FC = () => {
       <ScheduleModal 
         isOpen={isModalOpen} 
         onClose={handleCloseModal} 
+        setNotification={setNotification}
       />
       
       <div className="quick-stats">
