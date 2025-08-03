@@ -18,7 +18,7 @@ export interface BookingRequest {
 export const scheduleService = {
   async getAvailability(date: string): Promise<TimeSlot[]> {
     try {
-      const response = await fetch(`/schedule/meet/availability?date=${date}`);
+      const response = await fetch(`http://localhost:8080/schedule/meet/availability?date=${date}`);
       const data = await response.json();
       console.log(data);
       const availableSlots = data.data.availableSlots;
@@ -40,25 +40,30 @@ export const scheduleService = {
     }
   },
 
-  async initiateMeeting(booking: BookingRequest): Promise<{ success: boolean; message: string }> {
+  async initiateMeeting(booking: BookingRequest, token: string): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`/schedule/meet/initiate`, {
+      const response = await fetch(`http://localhost:8080/schedule/meet/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-recaptcha-v3-token': token
         },
         body: JSON.stringify(booking),
       });
       const data = await response.json();
-      const success = data.status;
+      const status = data.status;
       
-      if (success == 200) {
+      if (status == 200) {
         return {
           success: true,
           message: `Successfully initiated meeting schedule for ${booking.scheduleTime.split('T')[0]} at ${booking.scheduleTime.split('T')[1]},\nplease check your email (and SPAM folder) for next steps...`
         };
-      } else {
-        throw new Error('Slot is no longer available');
+      }
+      else {
+        return {
+          success: false,
+          message: data.message
+        };
       }
     } catch (error) {
       console.error('Error booking slot:', error);

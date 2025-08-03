@@ -1,15 +1,18 @@
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import React, { useState } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
 import './ScheduleModal.css';
 import { NotificationInterface } from './props/NotificationInterface';
 
+const RECAPTCHA_SITE_KEY = process.env.GOOGLE_RECAPCHA_V3_SITE_KEY;
 interface ScheduleModalProps {
   isOpen: boolean;
   onClose: () => void;
   setNotification: (notification: NotificationInterface) => void;
 }
 
-const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotification }) => {
+const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotification }) => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [selectedTime, setSelectedTime] = useState<string>('');
@@ -93,6 +96,14 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
   };
 
   const handleSubmit = async () => {
+    if(!executeRecaptcha) {
+      showNotification('ReCaptcha V3 could not verify you are not a robot.', 'error');
+      closeModal();
+      return;
+    }
+
+    const token = await executeRecaptcha('schedule_meeting');
+    
     if (selectedDate && selectedTime && userDetails.length > 0) {
       const validUsers = userDetails.filter(user => 
         user.firstName.trim() && user.lastName.trim() && user.emailId.trim()
@@ -104,22 +115,25 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
       }
       
       try {
-        const result = await scheduleService.initiateMeeting({
-          description: description,
-          scheduleTime: `${selectedDate}T${selectedTime}:00`,
-          requiredUsers: validUsers
-        });
+        const result = await scheduleService.initiateMeeting(
+          {
+            description: description,
+            scheduleTime: `${selectedDate}T${selectedTime}:00`,
+            requiredUsers: validUsers
+          },
+          token
+        );
         
         if (result.success) {
           showNotification(result.message, 'success');
         }
         else {
-          showNotification('Failed to book slot. Please try again.', 'error');
+          showNotification(result.message, 'error');
         }
       }
       catch (error) {
         console.error('Error booking slot:', error);
-        showNotification('Failed to book slot. Please try again.', 'error');
+        showNotification('Some error occurred. Please try again.', 'error');
       }
       finally {
         closeModal();
@@ -141,14 +155,13 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
   if (!isOpen) return null;
 
   return (
-    <>
-      <div className="modal-overlay" onClick={closeModal}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={closeModal}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Schedule a Call</h2>
           <button className="close-button" onClick={closeModal}>×</button>
         </div>
-        
+      
         <div className="modal-body">
           <div className="date-selection">
             <label htmlFor="date-picker">Select Date:</label>
@@ -165,36 +178,36 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
 
           {selectedDate && (
             <>
-            <div className="time-selection">
-              <h3>Available Time Slots for {selectedDate} (IST)</h3>
-              {loading ? (
-                <div className="loading">Loading available slots...</div>
-              ) : (
-                <div className="time-slots">
-                  {timeSlots.map((slot) => (
-                    <button
-                      key={slot.time}
-                      className={`time-slot ${!slot.available ? 'unavailable' : ''} ${
-                        selectedTime === slot.time ? 'selected' : ''
-                      }`}
-                      onClick={() => slot.available && handleTimeSelect(slot.time)}
-                      disabled={!slot.available}
-                    >
-                      {slot.time}
-                      {slot.available ? <span className="available-text">Available</span> : <span className="unavailable-text">Unavailable</span>}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Enter a meeting agenda</label>
-              <input
-                type="text"
-                id="description"
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
+              <div className="time-selection">
+                <h3>Available Time Slots for {selectedDate} (IST)</h3>
+                {loading ? (
+                  <div className="loading">Loading available slots...</div>
+                ) : (
+                  <div className="time-slots">
+                    {timeSlots.map((slot) => (
+                      <button
+                        key={slot.time}
+                        className={`time-slot ${!slot.available ? 'unavailable' : ''} ${
+                          selectedTime === slot.time ? 'selected' : ''
+                        }`}
+                        onClick={() => slot.available && handleTimeSelect(slot.time)}
+                        disabled={!slot.available}
+                      >
+                        {slot.time}
+                        {slot.available ? <span className="available-text">Available</span> : <span className="unavailable-text">Unavailable</span>}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Enter a meeting agenda</label>
+                <input
+                  type="text"
+                  id="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
             </>
           )}
 
@@ -277,7 +290,14 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
         </div>
       </div>
     </div>
-    </>
+  );
+};
+
+const ScheduleModal: React.FC<ScheduleModalProps> = (props) => {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY || ''}>
+      <ScheduleModalContent {...props} />
+    </GoogleReCaptchaProvider>
   );
 };
 
