@@ -6,13 +6,16 @@ export interface ContactFormData {
 }
 
 export const emailService = {
-  async sendContactEmail(formData: ContactFormData): Promise<{ success: boolean; message: string }> {
+  async sendContactEmail(formData: ContactFormData, token: string): Promise<{ success: boolean; message: string }> {
     try {
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'x-recaptcha-v3-token': token
+      };
+      
       const response = await fetch(`/contact/send`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({
           ...formData
         }),

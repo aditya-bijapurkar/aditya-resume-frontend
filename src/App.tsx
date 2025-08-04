@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
@@ -7,6 +8,8 @@ import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import './App.css';
 import BuildDeploy from './pages/BuildDeploy';
+
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const ThemeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -57,20 +60,29 @@ const ThemeToggle: React.FC = () => {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <ThemeToggle />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="details" element={<BuildDeploy />} />
-            <Route path="experience" element={<Experience />} />
-            <Route path="skills" element={<Skills />} />
-            <Route path="contact" element={<Contact />} />
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+    <GoogleReCaptchaProvider 
+      reCaptchaKey={RECAPTCHA_SITE_KEY || ''}
+      scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: 'body'
+      }}
+    >
+      <Router>
+        <div className="App">
+          <ThemeToggle />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="details" element={<BuildDeploy />} />
+              <Route path="experience" element={<Experience />} />
+              <Route path="skills" element={<Skills />} />
+              <Route path="contact" element={<Contact />} />
+            </Route>
+          </Routes>
+        </div>
+      </Router>
+    </GoogleReCaptchaProvider>
   );
 }
 

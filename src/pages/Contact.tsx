@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService';
 import './Pages.css';
 import { emailService, ContactFormData } from '../services/emailService';
 
 const Contact: React.FC = () => {
+  const { executeRecaptcha, isRecaptchaAvailable } = useRecaptcha();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     emailId: '',
@@ -35,7 +37,13 @@ const Contact: React.FC = () => {
     setSubmitStatus({ type: null, message: '' });
     
     try {
-      const result = await emailService.sendContactEmail(formData);
+      if (!isRecaptchaAvailable) {
+        throw new Error('ReCaptcha verification failed. Please refresh the page and try again.');
+      }
+      
+      const token = await executeRecaptcha(RECAPTCHA_ACTIONS.CONTACT_FORM);
+      
+      await emailService.sendContactEmail(formData, token);
       handleMailSuccess();
       
       setFormData({
@@ -44,12 +52,14 @@ const Contact: React.FC = () => {
         subject: '',
         text: ''
       });
-    } catch (error) {
+    } 
+    catch (error) {
       setSubmitStatus({ 
         type: 'error', 
         message: error instanceof Error ? error.message : 'Failed to send message. Please try again.' 
       });
-    } finally {
+    }
+    finally {
       setIsSubmitting(false);
     }
   };

@@ -1,18 +1,17 @@
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
+import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService';
 import './ScheduleModal.css';
 import { NotificationInterface } from './props/NotificationInterface';
 
-const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 interface ScheduleModalProps {
   isOpen: boolean;
   onClose: () => void;
   setNotification: (notification: NotificationInterface) => void;
 }
 
-const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotification }) => {
-  const { executeRecaptcha } = useGoogleReCaptcha();
+const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotification }) => {
+  const { executeRecaptcha, isRecaptchaAvailable } = useRecaptcha();
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
   const [selectedTime, setSelectedTime] = useState<string>('');
@@ -21,45 +20,6 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
   const [userDetails, setUserDetails] = useState<UserDetails[]>([
     { firstName: '', lastName: '', emailId: '' }
   ]);
-
-  // Debug: Check ReCaptcha badge and iframe
-  useEffect(() => {
-    const checkRecaptchaBadge = () => {
-      const badge = document.querySelector('.grecaptcha-badge');
-      console.log('ReCaptcha badge found:', !!badge);
-      
-      if (badge) {
-        console.log('Badge HTML:', badge.outerHTML);
-        
-        const iframe = badge.querySelector('iframe');
-        console.log('Iframe found:', !!iframe);
-        
-        if (iframe) {
-          console.log('Iframe src:', iframe.src);
-          console.log('Iframe contentWindow:', !!iframe.contentWindow);
-          
-          // Check if iframe has content
-          try {
-            if (iframe.contentDocument) {
-              console.log('Iframe has content document');
-            } else {
-              console.log('Iframe content document is null (likely cross-origin)');
-            }
-          } catch (e) {
-            console.log('Cannot access iframe content (cross-origin):', (e as Error).message);
-          }
-        }
-      }
-    };
-
-    // Check immediately
-    checkRecaptchaBadge();
-    
-    // Check again after delays to catch late loading
-    setTimeout(checkRecaptchaBadge, 1000);
-    setTimeout(checkRecaptchaBadge, 3000);
-    setTimeout(checkRecaptchaBadge, 5000);
-  }, []);
 
   const resetForm = () => {
     setSelectedDate('');
@@ -135,25 +95,24 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
   };
 
   const handleSubmit = async () => {
-    if(!executeRecaptcha) {
-      showNotification('ReCaptcha V3 could not verify you are not a robot.', 'error');
-      closeModal();
+    if (!isRecaptchaAvailable) {
+      showNotification('ReCaptcha verification failed. Please refresh the page and try again.', 'error');
       return;
     }
 
-    const token = await executeRecaptcha('schedule_meeting');
-    
-    if (selectedDate && selectedTime && userDetails.length > 0) {
-      const validUsers = userDetails.filter(user => 
-        user.firstName.trim() && user.lastName.trim() && user.emailId.trim()
-      );
+    try {
+      const token = await executeRecaptcha(RECAPTCHA_ACTIONS.SCHEDULE_MEETING);
       
-      if (validUsers.length === 0) {
-        showNotification('Please fill in at least one attendee\'s details.', 'error');
-        return;
-      }
-      
-      try {
+      if (selectedDate && selectedTime && userDetails.length > 0) {
+        const validUsers = userDetails.filter(user => 
+          user.firstName.trim() && user.lastName.trim() && user.emailId.trim()
+        );
+        
+        if (validUsers.length === 0) {
+          showNotification('Please fill in at least one attendee\'s details.', 'error');
+          return;
+        }
+        
         const result = await scheduleService.initiateMeeting(
           {
             description: description,
@@ -165,18 +124,22 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
         
         if (result.success) {
           showNotification(result.message, 'success');
-        }
-        else {
+        } else {
           showNotification(result.message, 'error');
         }
       }
-      catch (error) {
-        console.error('Error booking slot:', error);
-        showNotification('Some error occurred. Please try again.', 'error');
+    }
+    catch (error) {
+      console.error('Error during form submission:', error);
+      if (error instanceof Error && error.message.includes('recaptcha')) {
+        showNotification('ReCaptcha verification failed. Please try again.', 'error');
       }
-      finally {
-        closeModal();
+      else {
+        showNotification('An error occurred while scheduling the meeting. Please try again.', 'error');
       }
+    }
+    finally {
+      closeModal();
     }
   };
 
@@ -329,28 +292,6 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
         </div>
       </div>
     </div>
-  );
-};
-
-const ScheduleModal: React.FC<ScheduleModalProps> = (props) => {
-  // Debug: Check if the site key is loaded
-  console.log('ReCaptcha Site Key:', RECAPTCHA_SITE_KEY ? 'Loaded' : 'Not loaded');
-  
-  // Debug: Check if we're in production
-  console.log('Environment:', process.env.NODE_ENV);
-  console.log('Current domain:', window.location.hostname);
-  
-  return (
-    <GoogleReCaptchaProvider 
-      reCaptchaKey={RECAPTCHA_SITE_KEY || ''}
-      scriptProps={{
-        async: true,
-        defer: true,
-        appendTo: 'body'
-      }}
-    >
-      <ScheduleModalContent {...props} />
-    </GoogleReCaptchaProvider>
   );
 };
 
