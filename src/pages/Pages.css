@@ -138,6 +138,13 @@
   align-items: center;
 }
 
+[data-theme="dark"] .hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
 .placeholder-image {
   width: 300px;
   height: 300px;
