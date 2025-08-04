@@ -20,7 +20,6 @@ export const scheduleService = {
     try {
       const response = await fetch(`/schedule/meet/availability?date=${date}`);
       const data = await response.json();
-      console.log(data);
       const availableSlots = data.data.availableSlots;
       
       const slots: TimeSlot[] = [];

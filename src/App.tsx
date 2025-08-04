@@ -36,9 +36,7 @@ const ThemeToggle: React.FC = () => {
   }, []);
 
   const toggleTheme = () => {
-    console.log("prev: ", isDark);
     setTheme(!isDark ? 'dark' : 'light');
-    console.log("after: ", !isDark);
   };
 
   return (
