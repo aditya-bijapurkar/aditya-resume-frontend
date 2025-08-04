@@ -17,8 +17,9 @@ COPY public/ ./public/
 COPY src/ ./src/
 COPY tsconfig.json ./
 
-ARG GOOGLE_RECAPCHA_V3_SITE_KEY
-ENV REACT_APP_RECAPTCHA_SITE_KEY=${GOOGLE_RECAPCHA_V3_SITE_KEY}
+ARG GOOGLE_RECAPTCHA_V3_SITE_KEY
+RUN mkdir -p .env && \
+    echo "REACT_APP_RECAPTCHA_SITE_KEY=${GOOGLE_RECAPTCHA_V3_SITE_KEY}" > .env
 
 RUN npm run build && \
     rm -rf node_modules
