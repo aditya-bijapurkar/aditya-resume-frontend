@@ -4,7 +4,7 @@ import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleServ
 import './ScheduleModal.css';
 import { NotificationInterface } from './props/NotificationInterface';
 
-const RECAPTCHA_SITE_KEY = process.env.GOOGLE_RECAPCHA_V3_SITE_KEY;
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 interface ScheduleModalProps {
   isOpen: boolean;
   onClose: () => void;
