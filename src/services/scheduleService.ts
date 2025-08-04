@@ -18,7 +18,7 @@ export interface BookingRequest {
 export const scheduleService = {
   async getAvailability(date: string): Promise<TimeSlot[]> {
     try {
-      const response = await fetch(`http://localhost:8080/schedule/meet/availability?date=${date}`);
+      const response = await fetch(`/schedule/meet/availability?date=${date}`);
       const data = await response.json();
       console.log(data);
       const availableSlots = data.data.availableSlots;
@@ -42,7 +42,7 @@ export const scheduleService = {
 
   async initiateMeeting(booking: BookingRequest, token: string): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`http://localhost:8080/schedule/meet/initiate`, {
+      const response = await fetch(`/schedule/meet/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
