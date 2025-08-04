@@ -52,6 +52,17 @@ const BuildDeploy: React.FC = () => {
     },
     {
       id: 5,
+      title: 'Authentication & Authorization',
+      description: 'Implemented reCAPTCHA v3 for the website to prevent unauthorized access and DDOS attacks to the website. TODO - implemented user-management module for subscription based access to the website.',
+      technologies: ['reCAPTCHA v3', 'Auth-service', 'AWS Lambda', 'AWS S3'],
+      image: {
+        src: '/project/incognito.png',
+        alt: 'reCAPTCHA v3',
+      },      
+      action: 'done'
+    },
+    {
+      id: 6,
       title: 'Monitoring & Observability Platform',
       description: 'Implemented prometheus custom metrics in Spring Application to enable easy monitoring and alerting. TODO - Adding Graphana Dashboards and Alerting to integrate with the website to send email alerts.',
       technologies: ['Prometheus', 'Grafana', 'Monitoring', 'Alerting', 'Actuator'],
@@ -59,17 +70,6 @@ const BuildDeploy: React.FC = () => {
         src: '/project/prometheus.png',
         alt: 'Prometheus',
       },  
-      action: 'todo'
-    },
-    {
-      id: 6,
-      title: 'Authentication & Authorization',
-      description: 'TODO - Add lambda authentication and authorization functionality to the website to prevent unauthorized access and DDOS attacks to the website. Implementing user-management module for subscription based access to the website.',
-      technologies: ['AWS Lambda', 'Auth-service', 'AWS API Gateway', 'AWS S3'],
-      image: {
-        src: '/project/incognito.png',
-        alt: 'Incognito',
-      },      
       action: 'todo'
     }
   ];
@@ -105,7 +105,7 @@ const BuildDeploy: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/systemarchitecture.svg" 
+                src="/system-architecture-one.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
