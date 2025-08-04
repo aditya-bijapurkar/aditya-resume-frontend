@@ -1,5 +1,5 @@
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
 import './ScheduleModal.css';
 import { NotificationInterface } from './props/NotificationInterface';
@@ -21,6 +21,45 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
   const [userDetails, setUserDetails] = useState<UserDetails[]>([
     { firstName: '', lastName: '', emailId: '' }
   ]);
+
+  // Debug: Check ReCaptcha badge and iframe
+  useEffect(() => {
+    const checkRecaptchaBadge = () => {
+      const badge = document.querySelector('.grecaptcha-badge');
+      console.log('ReCaptcha badge found:', !!badge);
+      
+      if (badge) {
+        console.log('Badge HTML:', badge.outerHTML);
+        
+        const iframe = badge.querySelector('iframe');
+        console.log('Iframe found:', !!iframe);
+        
+        if (iframe) {
+          console.log('Iframe src:', iframe.src);
+          console.log('Iframe contentWindow:', !!iframe.contentWindow);
+          
+          // Check if iframe has content
+          try {
+            if (iframe.contentDocument) {
+              console.log('Iframe has content document');
+            } else {
+              console.log('Iframe content document is null (likely cross-origin)');
+            }
+          } catch (e) {
+            console.log('Cannot access iframe content (cross-origin):', (e as Error).message);
+          }
+        }
+      }
+    };
+
+    // Check immediately
+    checkRecaptchaBadge();
+    
+    // Check again after delays to catch late loading
+    setTimeout(checkRecaptchaBadge, 1000);
+    setTimeout(checkRecaptchaBadge, 3000);
+    setTimeout(checkRecaptchaBadge, 5000);
+  }, []);
 
   const resetForm = () => {
     setSelectedDate('');
@@ -294,8 +333,22 @@ const ScheduleModalContent: React.FC<ScheduleModalProps> = ({ isOpen, onClose, s
 };
 
 const ScheduleModal: React.FC<ScheduleModalProps> = (props) => {
+  // Debug: Check if the site key is loaded
+  console.log('ReCaptcha Site Key:', RECAPTCHA_SITE_KEY ? 'Loaded' : 'Not loaded');
+  
+  // Debug: Check if we're in production
+  console.log('Environment:', process.env.NODE_ENV);
+  console.log('Current domain:', window.location.hostname);
+  
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY || ''}>
+    <GoogleReCaptchaProvider 
+      reCaptchaKey={RECAPTCHA_SITE_KEY || ''}
+      scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: 'body'
+      }}
+    >
       <ScheduleModalContent {...props} />
     </GoogleReCaptchaProvider>
   );
