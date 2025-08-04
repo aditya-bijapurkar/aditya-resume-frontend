@@ -19,7 +19,9 @@ jobs:
     - name: Build and push to Docker image to aditya-resume-frontend
       run: |
         IMAGE_NAME=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
-        docker build -t $IMAGE_NAME .
+        docker build \
+          --build-arg GOOGLE_RECAPCHA_V3_SITE_KEY=${{ secrets.GOOGLE_RECAPCHA_V3_SITE_KEY }} \
+          -t $IMAGE_NAME .
         docker push $IMAGE_NAME
 
     - name: Deploy to EC2
@@ -29,14 +31,6 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          cd /home/ubuntu
-          sudo rm -f .env-frontend
-          
-          echo "writing secrets to .env-frontend file"
-          sudo bash -c "cat <<EOF > .env-frontend
-          GOOGLE_RECAPCHA_V3_SITE_KEY=${{ secrets.GOOGLE_RECAPCHA_V3_SITE_KEY }}
-          EOF"
-
           echo "restarting the application..."
           sudo docker-compose down || true
           echo "removing all stopped containers"

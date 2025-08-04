@@ -17,6 +17,9 @@ COPY public/ ./public/
 COPY src/ ./src/
 COPY tsconfig.json ./
 
+ARG GOOGLE_RECAPCHA_V3_SITE_KEY
+ENV GOOGLE_RECAPCHA_V3_SITE_KEY=${GOOGLE_RECAPCHA_V3_SITE_KEY}
+
 RUN npm run build && \
     rm -rf node_modules
 
