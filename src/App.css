@@ -278,6 +278,6 @@ button {
 
 [data-theme="dark"] .grecaptcha-badge {
   bottom: 14px !important;
-  filter: invert(1);
+  filter: invert(1) grayscale(1);
   z-index: 1000;
 }
