@@ -52,7 +52,7 @@ export const scheduleService = {
       const data = await response.json();
       const status = data.status;
       
-      if (status == 200) {
+      if (status === 200) {
         return {
           success: true,
           message: `Successfully initiated meeting schedule for ${booking.scheduleTime.split('T')[0]} at ${booking.scheduleTime.split('T')[1]},\nplease check your email (and SPAM folder) for next steps...`

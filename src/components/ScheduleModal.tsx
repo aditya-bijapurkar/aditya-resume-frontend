@@ -94,7 +94,9 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
     if (!isRecaptchaAvailable) {
       showNotification('ReCaptcha verification failed. Please refresh the page and try again.', 'error');
       return;
@@ -214,80 +216,80 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
           )}
 
           {selectedDate && selectedTime && !loading && (
-            <div className="user-details-section">
-              <h3>Attendee Details</h3>
-              {userDetails.map((user, index) => (
-                <div key={index} className="user-form">
-                  <div className="user-header">
-                    <h4>Attendee {index + 1}</h4>
-                    {userDetails.length > 1 && (
-                      <button 
-                        type="button" 
-                        className="remove-user-btn"
-                        onClick={() => removeUser(index)}
-                      >
-                        Remove
-                      </button>
-                    )}
-                  </div>
-                  <div className="form-row">
+            <form onSubmit={handleSubmit}>
+              <div className="user-details-section">
+                <h3>Attendee Details</h3>
+                {userDetails.map((user, index) => (
+                  <div key={index} className="user-form">
+                    <div className="user-header">
+                      <h4>Attendee {index + 1}</h4>
+                      {userDetails.length > 1 && (
+                        <button 
+                          type="button" 
+                          className="remove-user-btn"
+                          onClick={() => removeUser(index)}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor={`firstName-${index}`}>First Name *</label>
+                        <input
+                          type="text"
+                          id={`firstName-${index}`}
+                          value={user.firstName}
+                          onChange={(e) => updateUserDetails(index, 'firstName', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor={`lastName-${index}`}>Last Name *</label>
+                        <input
+                          type="text"
+                          id={`lastName-${index}`}
+                          value={user.lastName}
+                          onChange={(e) => updateUserDetails(index, 'lastName', e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
                     <div className="form-group">
-                      <label htmlFor={`firstName-${index}`}>First Name *</label>
+                      <label htmlFor={`email-${index}`}>Email *</label>
                       <input
-                        type="text"
-                        id={`firstName-${index}`}
-                        value={user.firstName}
-                        onChange={(e) => updateUserDetails(index, 'firstName', e.target.value)}
+                        type="email"
+                        id={`email-${index}`}
+                        value={user.emailId}
+                        onChange={(e) => updateUserDetails(index, 'emailId', e.target.value)}
                         required
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor={`lastName-${index}`}>Last Name *</label>
-                      <input
-                        type="text"
-                        id={`lastName-${index}`}
-                        value={user.lastName}
-                        onChange={(e) => updateUserDetails(index, 'lastName', e.target.value)}
-                        required
-                      />
-                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor={`email-${index}`}>Email *</label>
-                    <input
-                      type="email"
-                      id={`email-${index}`}
-                      value={user.emailId}
-                      onChange={(e) => updateUserDetails(index, 'emailId', e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-              ))}
-              
-              <button 
-                type="button" 
-                className="btn btn-secondary add-user-btn"
-                onClick={addUser}
-              >
-                + Add Another Attendee
-              </button>
-            </div>
-          )}
+                ))}
+                
+                <button 
+                  type="button" 
+                  className="btn btn-secondary add-user-btn"
+                  onClick={addUser}
+                >
+                  + Add Another Attendee
+                </button>
+              </div>
 
-          {selectedDate && selectedTime && !loading && (
-            <div className="booking-summary">
-              <h3>Booking Summary</h3>
-              <p>Date: {selectedDate}</p>
-              <p>Time: {selectedTime}</p>
-              <p>Attendees: {userDetails.length}</p>
-              <button
-                className="btn btn-primary book-button" 
-                onClick={handleSubmit}
-              >
-                Confirm Meeting Schedule
-              </button>
-            </div>
+              <div className="booking-summary">
+                <h3>Booking Summary</h3>
+                <p>Date: {selectedDate}</p>
+                <p>Time: {selectedTime}</p>
+                <p>Attendees: {userDetails.length}</p>
+                <button
+                  className="btn btn-primary book-button"
+                  type='submit'
+                >
+                  Confirm Meeting Schedule
+                </button>
+              </div>
+            </form>
           )}
         </div>
       </div>
