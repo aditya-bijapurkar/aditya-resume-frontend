@@ -150,6 +150,11 @@ button {
   h3 {
     font-size: 1.3rem !important;
   }
+
+  .grecaptcha-badge {
+    visibility: hidden; 
+  }
+
 }
 
 @media (max-width: 480px) {
