@@ -100,6 +100,11 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
       return;
     }
 
+    if(userDetails.length === 0) {
+      showNotification('Please fill in at least one attendee\'s details.', 'error');
+      return;
+    }
+
     try {
       const token = await executeRecaptcha(RECAPTCHA_ACTIONS.SCHEDULE_MEETING);
       
@@ -107,11 +112,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
         const validUsers = userDetails.filter(user => 
           user.firstName.trim() && user.lastName.trim() && user.emailId.trim()
         );
-        
-        if (validUsers.length === 0) {
-          showNotification('Please fill in at least one attendee\'s details.', 'error');
-          return;
-        }
         
         const result = await scheduleService.initiateMeeting(
           {
