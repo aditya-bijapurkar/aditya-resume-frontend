@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { scheduleService, TimeSlot, UserDetails } from '../services/scheduleService';
 import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService';
-import './ScheduleModal.css';
+import './css/ScheduleModal.css';
 import { NotificationInterface } from './props/NotificationInterface';
 
 interface ScheduleModalProps {

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ScheduleModal from '../components/ScheduleModal';
-import './Pages.css';
+import './css/Pages.css';
 import Notification from '../components/Notification';
 import { NotificationInterface } from '../components/props/NotificationInterface';
 

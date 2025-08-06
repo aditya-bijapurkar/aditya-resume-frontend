@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
-import './App.css';
+import './css/App.css';
 import BuildDeploy from './pages/BuildDeploy';
 
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;

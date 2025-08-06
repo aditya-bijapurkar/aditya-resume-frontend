@@ -1,5 +1,5 @@
 import React from 'react';
-import './Pages.css';
+import './css/Pages.css';
 
 const Skills: React.FC = () => {
   const skillCategories = [

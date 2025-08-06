@@ -1,5 +1,5 @@
 import React from 'react';
-import './Pages.css';
+import './css/Pages.css';
 
 const BuildDeploy: React.FC = () => {
   const projects = [

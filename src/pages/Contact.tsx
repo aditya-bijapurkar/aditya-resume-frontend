@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService';
-import './Pages.css';
+import './css/Pages.css';
 import { emailService, ContactFormData } from '../services/emailService';
 
 const Contact: React.FC = () => {
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
               <span className="contact-icon">⚒️</span>
               <div>
                 <h4>Leetcode</h4>
-                <a href="https://leetcode.com/u/adityabijapurkar/" target='_blank'><p>https://leetcode.com/u/adityabijapurkar/</p></a>
+                <a href="https://leetcode.com/u/adityabijapurkar/" target='_blank' rel="noreferrer"><p>https://leetcode.com/u/adityabijapurkar/</p></a>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
               <span className="contact-icon">💼</span>
               <div>
                 <h4>LinkedIn</h4>
-                <a href="https://www.linkedin.com/in/aditya-bijapurkar/" target='_blank'><p>https://www.linkedin.com/in/aditya-bijapurkar/</p></a>
+                <a href="https://www.linkedin.com/in/aditya-bijapurkar/" target='_blank' rel="noreferrer"><p>https://www.linkedin.com/in/aditya-bijapurkar/</p></a>
               </div>
             </div>
             
@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
               <span className="contact-icon">🐙</span>
               <div>
                 <h4>GitHub</h4>
-                <a href="https://github.com/aditya-bijapurkar" target='_blank'><p>https://github.com/aditya-bijapurkar</p></a>
+                <a href="https://github.com/aditya-bijapurkar" target='_blank' rel="noreferrer"><p>https://github.com/aditya-bijapurkar</p></a>
               </div>
             </div>
 
