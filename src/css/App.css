@@ -105,6 +105,69 @@ button {
   min-width: 44px;
 }
 
+.chat-button {
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 16px;
+  height: 50px;
+  width: 50px;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.chat-button-container {
+  position: fixed;
+  top: 5rem;
+  right: 1rem;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .chat-button {
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+}
+
+.chat-button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--hover-shadow);
+}
+
+.chat-button svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+}
+
+.chat-text {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .theme-toggle {
   position: fixed;
   top: 1rem;
@@ -151,10 +214,19 @@ button {
     font-size: 1.3rem !important;
   }
 
+  .chat-button {
+    width: 50px;
+    height: 50px;
+    padding: 12px 16px;
+  }
+
+  .chat-text {
+    font-size: 0.7rem;
+  }
+
   .grecaptcha-badge {
     visibility: hidden; 
   }
-
 }
 
 @media (max-width: 480px) {
@@ -167,11 +239,49 @@ button {
   }
   
   h2 {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
+  }
+  
+  h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .chat-button {
+    width: 50px;
+    height: 50px;
+    padding: 12px 16px;
+  }
+
+  .chat-text {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 12px;
+  }
+  
+  h1 {
+    font-size: 1.4rem !important;
+  }
+  
+  h2 {
+    font-size: 1.2rem !important;
   }
   
   h3 {
     font-size: 1.1rem !important;
+  }
+
+  .chat-button {
+    width: 50px;
+    height: 50px;
+    padding: 12px 16px;
+  }
+
+  .chat-text {
+    font-size: 0.6rem;
   }
 }
 
