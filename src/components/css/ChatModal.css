@@ -16,7 +16,7 @@
 }
 
 .chat-container {
-    width: 300px;
+    width: 400px;
     height: 700px;
     display: flex;
     flex-direction: column;
@@ -61,11 +61,21 @@
     gap: 0.5rem;
 }
 
-.chat-message {
+.chat-message.prompt {
     padding: 0.5rem;
     border-radius: 8px;
     background: var(--bg-primary);
     color: var(--text-primary);
+    font-size: 0.9rem;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.chat-message.response {
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
     font-size: 0.9rem;
     max-width: 80%;
     word-wrap: break-word;

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './css/ChatModal.css';
+import { ChatMessageInterface } from './props/ChatMessageInterface';
 
 interface ChatModalProps {
     isOpen: boolean;
@@ -7,13 +8,17 @@ interface ChatModalProps {
 }
 
 const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
-
+    const [chatMessages, setChatMessages] = useState<ChatMessageInterface[]>([]);
+    
+    if(!isOpen) return null;
+ 
     const closeModal = () : void => {
         onClose();
     }
 
-
-    if(!isOpen) return null;
+    const addDataToChat = (data: ChatMessageInterface) : void => {
+        setChatMessages([...chatMessages, data]);
+    }
 
     return (
         <div className="modal-overlay" onClick={closeModal}>
@@ -22,9 +27,11 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
                     <h1>Under Construction</h1>   
                 </div>
                 <div className="chat-body">
-                    <div className="chat-message">AI Chatbot is under construction</div>
-                    <div className="chat-message">Rag Model implementation is in progress</div>
-                    <div className="chat-message">LLM Ollama approach is being tested</div>
+                    {chatMessages.map((message, index) => (
+                        <div key={index} className={`chat-message ${message.type}`}>
+                            {message.message}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
