@@ -4,6 +4,7 @@ import { ChatMessageInterface } from './props/ChatMessageInterface';
 import { chatService } from '../services/chatService';
 import { NotificationInterface } from './props/NotificationInterface';
 import Notification from './Notification';
+import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService'
 
 interface ChatModalProps {
     isOpen: boolean;
@@ -11,6 +12,7 @@ interface ChatModalProps {
 }
 
 const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
+    const { executeRecaptcha, isRecaptchaAvailable } = useRecaptcha();
     const [currInput, setCurrInput] = useState<string>('');
     const [inputDisabled, setInputDisabled] = useState<boolean>(false);
     const [notification, setNotification] = useState<NotificationInterface>({
@@ -55,20 +57,6 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
         });
     }
 
-    const getDayFromTimestamp = (timestamp: string | undefined) : string => {
-        if(!timestamp) return '';
-        return timestamp.split('T')[0].split('-').slice(1, 3).join('/');
-    }
-
-    const getTimeFromTimestamp = (timestamp: string | undefined) : string => {
-        if(!timestamp) return '';
-        return timestamp.split('T')[1].split('.')[0].split(':').slice(0, 2).join(':');
-    }
-
-    const getTimeDisplayString = (timestamp: string | undefined) : string => {
-        return `${getDayFromTimestamp(timestamp)}, ${getTimeFromTimestamp(timestamp)}`;
-    }
-
     const scrollToBottom = () => {
         if (chatBodyRef.current) {
             chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
@@ -80,6 +68,11 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
     }, [chatMessages]);
 
     const handleSendMessage = async () => {
+        if (!isRecaptchaAvailable) {
+            throw new Error('ReCaptcha verification failed. Please refresh the page and try again.');
+        }
+        const token = await executeRecaptcha(RECAPTCHA_ACTIONS.CHAT_RESPONSE);
+        
         if(currInput.trim() === '') return;
         setInputDisabled(true);
         setCurrInput('');
@@ -87,11 +80,11 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
         const prompt : ChatMessageInterface = {
             type: 'prompt',
             message: currInput,
-            timestamp: new Date().toISOString()
+            timestamp: chatService.getIstDateTime()
         }
         addDataToChat(prompt);
 
-        const response : ChatMessageInterface = await chatService.getResponse(prompt);
+        const response : ChatMessageInterface = await chatService.getResponse(prompt, token);
         if(response.type === 'error') {
             setNotification({
                 message: response.message || 'Something went wrong!',
@@ -170,7 +163,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
                             <div key={index} className={`chat-message ${message.type}`}>
                                 <div className="chat-message-content">
                                     <div className="chat-message-text">{message.message}</div>
-                                    <div className="chat-message-timestamp">{getTimeDisplayString(message.timestamp)}</div>
+                                    <div className="chat-message-timestamp">{message.timestamp}</div>
                                 </div>
                             </div>
                         ))

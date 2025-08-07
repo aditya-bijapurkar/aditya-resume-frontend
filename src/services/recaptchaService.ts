@@ -31,6 +31,7 @@ export const useRecaptcha = (): RecaptchaHook => {
 export const RECAPTCHA_ACTIONS = {
   SCHEDULE_MEETING: 'schedule_meeting',
   CONTACT_FORM: 'contact_form',
+  CHAT_RESPONSE: 'chat_response'
 } as const;
 
 export type RecaptchaAction = typeof RECAPTCHA_ACTIONS[keyof typeof RECAPTCHA_ACTIONS]; 
