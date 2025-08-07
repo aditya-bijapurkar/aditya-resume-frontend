@@ -1,5 +1,5 @@
 export interface ChatMessageInterface {
-    message: string;
-    type: 'prompt' | 'response';
+    type: 'prompt' | 'response' | 'error';
+    message?: string;
     timestamp?: string;
 }

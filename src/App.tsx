@@ -68,7 +68,7 @@ function App() {
           isOpen={isChatModalOpen}
           onClose={() => setIsChatModalOpen(false)}
         />
-      : <p className="chat-text">Chat</p>
+      : <p className="chat-text">AI Chatbot</p>
     )
   }
 

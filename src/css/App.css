@@ -184,6 +184,7 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: var(--card-shadow);
+  z-index: 1003;
 }
 
 .theme-toggle:hover {
