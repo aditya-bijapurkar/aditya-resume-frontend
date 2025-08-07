@@ -29,14 +29,20 @@ export const chatService = {
                 body: JSON.stringify({
                     prompt: prompt.message
                 })
-            })
+            });
 
             const data = await response.json();
-
+            
+            if(response.ok) { 
+                return {
+                    type: 'response',
+                    message: data.data.response,
+                    timestamp: chatService.getIstDateTime()
+                }
+            }
             return {
-                type: 'response',
-                message: data.response,
-                timestamp: chatService.getIstDateTime()
+                type: 'error',
+                message: 'Some error occurred while generating AI response :(',
             }
         }
         catch (error) {
