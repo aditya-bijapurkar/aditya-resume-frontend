@@ -260,6 +260,10 @@
         gap: 0.5rem;
     }
     
+    .chat-container {
+        height: 500px;
+    }
+
     .chat-menu-btn {
         min-width: 28px;
         min-height: 28px;
@@ -315,7 +319,7 @@
         font-size: 0.8rem;
         padding: 0.3rem;
     }
-    
+
 }
 
 @media (max-width: 360px) {
@@ -332,27 +336,5 @@
     .chat-message {
         font-size: 0.75rem;
         padding: 0.25rem;
-    }
-}
-
-@media (max-height: 600px) {
-    .modal-overlay {
-        padding-top: 9rem;
-        gap: 0.3rem;
-    }
-    
-    .chat-container {
-        height: 300px;
-    }
-}
-
-@media (max-height: 500px) {
-    .modal-overlay {
-        padding-top: 9rem;
-        gap: 0.2rem;
-    }
-    
-    .chat-container {
-        height: 250px;
     }
 }
