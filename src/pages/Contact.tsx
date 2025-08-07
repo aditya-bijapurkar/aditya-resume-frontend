@@ -79,7 +79,7 @@ const Contact: React.FC = () => {
               <span className="contact-icon">📧</span>
               <div>
                 <h4>Personal Email</h4>
-                <p>adityabijapurkar@gmail.com</p>
+                <a href="mailto:adityabijapurkar@gmail.com" target='_blank' rel="noreferrer"><p>adityabijapurkar@gmail.com</p></a>
               </div>
             </div>
             
