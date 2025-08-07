@@ -25,7 +25,24 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
     });
     const [showMenu, setShowMenu] = useState<boolean>(false);
     const chatBodyRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
  
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (showMenu && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setShowMenu(false);
+            }
+        };
+
+        if (showMenu) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showMenu]);
+
     const closeModal = () : void => {
         onClose();
     }
@@ -119,7 +136,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
             <div className={`chat-container ${isOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
                 <div className="chat-header">
                     <h1>Ask RAG model</h1>
-                    <div className="chat-menu-container">
+                    <div className="chat-menu-container" ref={menuRef}>
                         <button 
                             className="chat-menu-btn" 
                             onClick={toggleMenu}
