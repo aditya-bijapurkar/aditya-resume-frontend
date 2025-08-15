@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -57,9 +57,9 @@ const ThemeToggle: React.FC = () => {
   );
 };
 
-function App() {
-
+const AppContent: React.FC = () => {
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
+  const location = useLocation();
 
   const handleChatModal = () : React.ReactNode => {
     return (
@@ -77,14 +77,36 @@ function App() {
       <div className="chat-button-container">
         <button className="chat-button" onClick={() => setIsChatModalOpen(!isChatModalOpen)}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418-4.03-8 9-8s9 3.582 9 8z" />
           </svg>
         </button>
         {handleChatModal()}
       </div>
     )
   }
-  
+
+  const shouldShowChatButton = location.pathname !== "/";
+
+  return (
+    <>
+      <div className="App">
+        <ThemeToggle />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="details" element={<BuildDeploy />} />
+            <Route path="experience" element={<Experience />} />
+            <Route path="skills" element={<Skills />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+        </Routes>
+      </div>
+      {shouldShowChatButton && handleChat()}
+    </>
+  );
+};
+
+function App() {
   return (
     <GoogleReCaptchaProvider 
       reCaptchaKey={RECAPTCHA_SITE_KEY || ''}
@@ -95,20 +117,8 @@ function App() {
       }}
     >
       <Router>
-        <div className="App">
-          <ThemeToggle />
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="details" element={<BuildDeploy />} />
-              <Route path="experience" element={<Experience />} />
-              <Route path="skills" element={<Skills />} />
-              <Route path="contact" element={<Contact />} />
-            </Route>
-          </Routes>
-        </div>
+        <AppContent />
       </Router>
-      {handleChat()}
     </GoogleReCaptchaProvider>
   );
 }

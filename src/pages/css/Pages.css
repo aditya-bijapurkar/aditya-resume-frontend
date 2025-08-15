@@ -107,19 +107,53 @@
   margin-bottom: 3rem;
 }
 
-.hero-text h2 {
+.chat-section {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+  max-width: 70%;
+}
+
+.chat-section-content h3 {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.chat-section-content p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.chat-cta {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chat-cta .btn {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+}
+
+.hero-section-left h2 {
   font-size: 2rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
-.hero-text h3 {
+.hero-section-left h3 {
   font-size: 1.5rem;
   color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
-.hero-text p {
+.hero-section-left p {
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.6;
@@ -132,13 +166,14 @@
   flex-wrap: wrap;
 }
 
-.hero-image {
+.hero-section-right {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-[data-theme="dark"] .hero-image {
+[data-theme="dark"] .hero-section-right {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,9 +202,9 @@
 
 .quick-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .stat-card {
@@ -799,16 +834,30 @@
     text-align: center;
   }
   
-  .hero-text h2 {
+  .hero-section-left h2 {
     font-size: 1.8rem;
   }
   
-  .hero-text h3 {
+  .hero-section-left h3 {
     font-size: 1.3rem;
   }
   
-  .hero-text p {
+  .hero-section-left p {
     font-size: 1rem;
+  }
+  
+  .chat-section {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+  
+  .chat-section-content h3 {
+    font-size: 1.2rem;
+  }
+  
+  .chat-section-content p {
+    font-size: 0.9rem;
   }
   
   .placeholder-image {
@@ -892,17 +941,30 @@
     margin-bottom: 2rem;
   }
   
-  .hero-text h2 {
+  .hero-section-left h2 {
     font-size: 1.6rem;
   }
   
-  .hero-text h3 {
+  .hero-section-left h3 {
     font-size: 1.2rem;
   }
   
-  .hero-text p {
+  .hero-section-left p {
     font-size: 0.95rem;
     line-height: 1.5;
+  }
+  
+  .chat-section {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  
+  .chat-section-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .chat-section-content p {
+    font-size: 0.85rem;
   }
   
   .placeholder-image {
