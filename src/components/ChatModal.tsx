@@ -128,7 +128,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
 
             <div className={`chat-container ${isOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
                 <div className="chat-header">
-                    <h1>Ask RAG model</h1>
+                    <h1>Ask RAG framework</h1>
                     <div className="chat-menu-container" ref={menuRef}>
                         <button 
                             className="chat-menu-btn" 

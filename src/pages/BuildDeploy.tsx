@@ -29,6 +29,17 @@ const BuildDeploy: React.FC = () => {
     },
     {
       id: 3,
+      title: 'RAG Framework and LLM chatbot',
+      description: 'Implemented RAG framework using Cosine similarity to retrieve relevant documents from the S3 knowledge base. Implemented LLM chatbot using OpenAI API to answer questions and provide information.',
+      technologies: ['RAG', 'Cosine Similarity', 'OpenAI API', 'LLM', 'Chatbot'],
+      image: {
+        src: '/project/rag.png',
+        alt: 'RAG framework',
+      },  
+      action: 'done'
+    },
+    {
+      id: 4,
       title: 'React-ive Frontend Interface',
       description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services using reverse proxy.',
       technologies: ['React', 'TypeScript', 'CSS3', 'React Router', 'React Hooks'],
@@ -40,10 +51,10 @@ const BuildDeploy: React.FC = () => {
       action: 'done'
     },
     {
-      id: 4,
+      id: 5,
       title: 'AWS Infrastructure',
       description: 'Built comprehensive infrastructure as code using AWS services including Route53, EC2, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
-      technologies: ['AWS', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront', 'SES'],
+      technologies: ['AWS', 'S3', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront', 'SES'],
       image: {
         src: '/project/aws.png',
         alt: 'AWS',
@@ -51,7 +62,7 @@ const BuildDeploy: React.FC = () => {
       action: 'done'
     },
     {
-      id: 5,
+      id: 6,
       title: 'Authentication & Authorization',
       description: 'Implemented reCAPTCHA v3 for the website to prevent unauthorized access and DDOS attacks to the website. TODO - implemented user-management module for subscription based access to the website.',
       technologies: ['reCAPTCHA v3', 'Auth-service', 'AWS Lambda', 'AWS S3'],
@@ -61,17 +72,6 @@ const BuildDeploy: React.FC = () => {
       },      
       action: 'done'
     },
-    {
-      id: 6,
-      title: 'Monitoring & Observability Platform',
-      description: 'Implemented prometheus custom metrics in Spring Application to enable easy monitoring and alerting. TODO - Adding Graphana Dashboards and Alerting to integrate with the website to send email alerts.',
-      technologies: ['Prometheus', 'Grafana', 'Monitoring', 'Alerting', 'Actuator'],
-      image: {
-        src: '/project/prometheus.png',
-        alt: 'Prometheus',
-      },  
-      action: 'todo'
-    }
   ];
 
   return (
@@ -105,7 +105,7 @@ const BuildDeploy: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/system-architecture-one.svg" 
+                src="/system-architecture-ai.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
