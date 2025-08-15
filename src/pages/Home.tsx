@@ -60,22 +60,22 @@ const Home: React.FC = () => {
             With hands-on experience in Java Spring Boot and Python Django,<br/>
             I specialize in designing and developing microservices architectures that are both maintainable and efficient.
             </p>
-            <div className="chat-section">
-              <div className="chat-section-content">
+            <div className="home-card">
+              <div className="home-card-content">
                 <h3>Schedule a 1-on-1 call with me</h3>
                 <p>Let's connect over a Google Meet call!</p>
-                <div className="chat-cta">
+                <div className="home-cta">
                   <button className="btn btn-primary" onClick={handleScheduleCall}>
                     Schedule a call
                   </button>
                 </div>
               </div>
             </div> 
-            <div className="chat-section">
-              <div className="chat-section-content">
+            <div className="home-card">
+              <div className="home-card-content">
                 <h3>Ask Me Anything</h3>
                 <p>Curious about my experience or skills?</p>
-                <div className="chat-cta">
+                <div className="home-cta">
                   <button className="btn btn-primary" onClick={handleOpenChat}>
                     Start Chatting
                   </button>

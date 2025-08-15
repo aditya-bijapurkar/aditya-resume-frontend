@@ -107,7 +107,7 @@
   margin-bottom: 3rem;
 }
 
-.chat-section {
+.home-card {
   background: var(--bg-secondary);
   border-radius: 12px;
   padding: 1.5rem;
@@ -115,27 +115,32 @@
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
   max-width: 70%;
+  transition: transform 0.3s ease;
 }
 
-.chat-section-content h3 {
+.home-card:hover {
+  transform: translateY(-5px);
+}
+
+.home-card-content h3 {
   font-size: 1.3rem;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 
-.chat-section-content p {
+.home-card-content p {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 1.5rem;
 }
 
-.chat-cta {
+.home-cta {
   display: flex;
   justify-content: flex-start;
 }
 
-.chat-cta .btn {
+.home-cta .btn {
   font-size: 0.95rem;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -846,17 +851,17 @@
     font-size: 1rem;
   }
   
-  .chat-section {
+  .home-card {
     margin-top: 1.5rem;
     padding: 1.25rem;
     max-width: 100%;
   }
   
-  .chat-section-content h3 {
+  .home-card-content h3 {
     font-size: 1.2rem;
   }
   
-  .chat-section-content p {
+  .home-card-content p {
     font-size: 0.9rem;
   }
   
@@ -954,16 +959,16 @@
     line-height: 1.5;
   }
   
-  .chat-section {
+  .home-card {
     margin-top: 1rem;
     padding: 1rem;
   }
   
-  .chat-section-content h3 {
+  .home-card-content h3 {
     font-size: 1.1rem;
   }
   
-  .chat-section-content p {
+  .home-card-content p {
     font-size: 0.85rem;
   }
   
