@@ -19,7 +19,7 @@ jobs:
     - name: Build and push to Docker image to aditya-resume-frontend
       run: |
         IMAGE_NAME=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
-        docker build \
+        docker buildx build --platform linux/amd64,linux/arm64 \
           --build-arg GOOGLE_RECAPTCHA_V3_SITE_KEY=${{ secrets.GOOGLE_RECAPTCHA_V3_SITE_KEY }} \
           -t $IMAGE_NAME .
         docker push $IMAGE_NAME
