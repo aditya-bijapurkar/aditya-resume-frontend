@@ -42,6 +42,21 @@ const Home: React.FC = () => {
     )
   }
 
+  const getYearsOfExperience = (startDate: string) : number => {
+    const start = new Date(startDate);
+    const now = new Date(); 
+    
+    let yearsExperienced = now.getFullYear() - start.getFullYear();
+    let monthsExperienced = (now.getMonth() + 1) - (start.getMonth() + 1);
+
+    if (monthsExperienced < 0) {
+      monthsExperienced = monthsExperienced + 12;
+      yearsExperienced = yearsExperienced - 1;
+    }
+
+    return parseFloat((yearsExperienced + (monthsExperienced / 12)).toFixed(1));
+  }
+
   return (
     <div className="page">
       <div className="page-header">
@@ -54,10 +69,10 @@ const Home: React.FC = () => {
       <div className="page-content">
         <div className="hero-section">
           <div className="hero-section-left">
-            <h2>Hello, I'm Aditya</h2>
+            <h2>Hello,</h2>
             <p>
-            I'm a Backend developer with a passion for building scalable, reliable, and secure systems. <br/>
-            With hands-on experience in Java Spring Boot and Python Django,<br/>
+            I'm a Certified Kubernetes Application Developer with a passion for building scalable, reliable, and secure systems. <br/>
+            With hands-on experience in Backend Development using Java Spring Boot and Python Django, 
             I specialize in designing and developing microservices architectures that are both maintainable and efficient.
             </p>
             <div className="home-card">
@@ -91,16 +106,16 @@ const Home: React.FC = () => {
             />
             <div className="quick-stats">
               <div className="stat-card">
-                <h3>1.5+</h3>
-                <p>Years Experience</p>
+                <h3>{getYearsOfExperience('2024-04-01')}</h3>
+                <p>Years of Experience</p>
               </div>
               <div className="stat-card">
                 <h3>10+</h3>
-                <p>Microservices Experience</p>
+                <p>Microservices Developed</p>
               </div>
               <div className="stat-card">
                 <h3>90%</h3>
-                <p>API Optimisation</p>
+                <p>API Optimized</p>
               </div>
             </div> 
           </div>
@@ -121,4 +136,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home; 
+export default Home;

@@ -500,11 +500,66 @@
   flex-wrap: wrap;
 }
 
+.certifications-container {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.certification-item {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.certificate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.certification-item h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.certification-item p {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.certification-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.certification-item a:hover {
+  color: var(--accent-primary);
+}
+
+.certification-item a:visited {
+  color: var(--text-secondary);
+}
+
+.certification-item a:active {
+  color: var(--accent-primary);
+}
+
+.certification-item a:focus {
+  color: var(--accent-primary);
+}
+
+.certification-item a:hover {
+  color: var(--accent-primary);
+}
+
 .skills-overview {
   background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 12px;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   box-shadow: var(--card-shadow);
 }
 
