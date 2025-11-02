@@ -1,4 +1,4 @@
-name: Deploy to EC2 from FE
+name: Deploy to remote instance from FE
 
 on:
   push:
