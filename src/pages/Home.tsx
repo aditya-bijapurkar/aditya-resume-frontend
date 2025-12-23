@@ -69,7 +69,7 @@ const Home: React.FC = () => {
       <div className="page-content">
         <div className="hero-section">
           <div className="hero-section-left">
-            <h2>Hello,</h2>
+            <h2>Welcome to my portfolio!</h2>
             <p>
             I'm a Certified Kubernetes Application Developer with a passion for building scalable, reliable, and secure systems. <br/>
             With hands-on experience in Backend Development using Java Spring Boot and Python Django, 
@@ -78,7 +78,7 @@ const Home: React.FC = () => {
             <div className="home-card">
               <div className="home-card-content">
                 <h3>Schedule a 1-on-1 call with me</h3>
-                <p>Let's connect over a Google Meet call!</p>
+                <p>Let's connect over a Zoom meeting!</p>
                 <div className="home-cta">
                   <button className="btn btn-primary" onClick={handleScheduleCall}>
                     Schedule a call

@@ -105,7 +105,7 @@ const BuildDeploy: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/system-architecture-ai.svg" 
+                src="/system-architecture-01.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
