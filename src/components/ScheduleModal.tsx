@@ -146,13 +146,19 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
   };
 
   const getMinDate = () => {
-    const today = new Date();
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const IST_OFFSET = 5.5 * 60 * 60000;
+    const today = new Date(utc + IST_OFFSET);
     return today.toISOString().split('T')[0];
   };
 
   const getMaxDate = () => {
-    const maxDate = new Date();
-    maxDate.setDate(maxDate.getDate() + 30);
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const IST_OFFSET = 5.5 * 60 * 60000;
+    const maxDate = new Date(utc + IST_OFFSET);
+    maxDate.setDate(now.getDate() + 30);
     return maxDate.toISOString().split('T')[0];
   };
 
@@ -169,6 +175,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
         <div className="modal-body">
           <div className="date-selection">
             <label htmlFor="date-picker">Select Date:</label>
+            <p className="date-picker-note">All dates and times are as per IST (UTC+5:30).</p>
             <input
               type="date"
               id="date-picker"

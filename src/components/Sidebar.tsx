@@ -7,10 +7,11 @@ const Sidebar: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: '🏠' },
-    { path: '/experience', label: 'Experience', icon: '📈' },
-    { path: '/skills', label: 'Skills', icon: '🛠️' },
-    { path: '/details', label: 'Build & Deploy', icon: '🚧'},
-    { path: '/contact', label: 'Contact', icon: '📧' },
+    { path: '/details', label: 'Project Overview', icon: '🚧'},
+    { path: '/cost', label: 'Cost Analysis', icon: '💰' },
+    { path: '/experience', label: 'My Experience', icon: '📈' },
+    { path: '/skills', label: 'My Skills', icon: '🛠️' },
+    { path: '/contact', label: 'Contact Me', icon: '📧' },
   ];
 
   const toggleMobileMenu = () => {

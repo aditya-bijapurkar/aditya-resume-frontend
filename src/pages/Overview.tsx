@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/Pages.css';
 
-const BuildDeploy: React.FC = () => {
+const Overview: React.FC = () => {
   const projects = [
     {
       id: 1,
@@ -86,17 +86,9 @@ const BuildDeploy: React.FC = () => {
           <h2>System Architecture Overview</h2>
         </div>
         <div className="explanation-section">
-          <h2>How It Works</h2>
           <p>
-            This portfolio website is built using React with TypeScript for the frontend, showcasing modern web development practices.<br/> 
-            The backend infrastructure demonstrates my expertise in Spring Boot, PostgreSQL, and AWS services.<br/>
-            The system follows microservices architecture principles with proper separation of concerns, 
-            automated deployment pipelines, and comprehensive monitoring solutions.<br/>
-          </p>
-          <p>
-            Key features include responsive design, component-based architecture, and integration with various 
-            backend services for contact forms and scheduling functionality. The entire system is containerized 
-            and deployed using CI/CD practices with infrastructure as code.
+            This website is built using Java / SpringBoot and React / TypeScript, running on OCI infrastructure and networked via Cloudflare DNS services.<br/>
+            Github Actions CI/CD pipelines are used to build and push images to DockerHub and to orchestrate containers using Docker Compose on servers.
           </p>
         </div>
 
@@ -157,4 +149,4 @@ const BuildDeploy: React.FC = () => {
   );
 };
 
-export default BuildDeploy; 
+export default Overview; 

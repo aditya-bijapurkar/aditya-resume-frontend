@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Layout from './components/Layout';
 import Home from './pages/Home';
+import Overview from './pages/Overview';
+import Cost from './pages/Cost';
 import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import './css/App.css';
-import BuildDeploy from './pages/BuildDeploy';
 import ChatModal from './components/ChatModal';
 
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
@@ -94,7 +95,8 @@ const AppContent: React.FC = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="details" element={<BuildDeploy />} />
+            <Route path="details" element={<Overview />} />
+            <Route path="cost" element={<Cost />} />
             <Route path="experience" element={<Experience />} />
             <Route path="skills" element={<Skills />} />
             <Route path="contact" element={<Contact />} />

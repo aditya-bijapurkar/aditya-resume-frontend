@@ -365,9 +365,9 @@
   box-shadow: var(--card-shadow);
 }
 
-.explanation-section h2 {
+.explanation-section h3 {
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .explanation-section p {
@@ -721,25 +721,6 @@
   margin-bottom: 0.25rem;
 }
 
-.experience-summary {
-  background: var(--bg-secondary);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  margin-bottom: 2rem;
-}
-
-.experience-summary h3 {
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.experience-summary p {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
-}
-
 .contact-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1084,5 +1065,195 @@
   .contact-info,
   .contact-form {
     padding: 1.5rem;
+  }
+}
+
+/* Cost Analysis Styles */
+.cost-table-container {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+
+.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.cost-table thead {
+  background: var(--bg-tertiary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.cost-table th {
+  padding: 1rem;
+  text-align: left;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cost-table th.text-right {
+  text-align: right;
+}
+
+.cost-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.cost-table tbody tr:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.cost-table td {
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.cost-table td.text-right {
+  text-align: right;
+}
+
+.service-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.service-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.category-tag {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.cost-amount {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cost-table tfoot {
+  border-top: 2px solid var(--border-color);
+  background: var(--bg-tertiary);
+}
+
+.cost-table tfoot .total-row {
+  border-bottom: none;
+}
+
+.cost-table tfoot .total-row:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.total-label {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 1.25rem 1rem;
+}
+
+.total-amount {
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-size: 1.1rem;
+  padding: 1.25rem 1rem;
+}
+
+.cost-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+}
+
+.summary-card h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.summary-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .cost-table-container {
+    padding: 1rem;
+  }
+
+  .cost-table {
+    font-size: 0.85rem;
+  }
+
+  .cost-table th,
+  .cost-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .service-description {
+    font-size: 0.8rem;
+  }
+
+  .summary-card {
+    padding: 1.5rem;
+  }
+
+  .summary-amount {
+    font-size: 1.5rem;
+  }
+
+  .cost-summary {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cost-table-container {
+    padding: 0.75rem;
+    overflow-x: auto;
+  }
+
+  .cost-table {
+    min-width: 600px;
+    font-size: 0.8rem;
+  }
+
+  .cost-table th,
+  .cost-table td {
+    padding: 0.5rem;
+  }
+
+  .summary-amount {
+    font-size: 1.3rem;
   }
 } 

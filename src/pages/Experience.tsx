@@ -51,7 +51,7 @@ const Experience: React.FC = () => {
       
       <div className="page-content">
         
-        <div className="experience-summary">
+        <div className="explanation-section">
           <h3>Career Summary</h3>
           <p>
             I have worked on 2 projects at AiDash, delivering scalable backend solutions for asset management and compliance.<br/>
