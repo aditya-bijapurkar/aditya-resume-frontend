@@ -41,4 +41,4 @@ jobs:
           sudo docker compose up -d frontend
           echo "removing unused image..."
           sudo docker image prune -f
-          sudo "successfully completed frontend restart script!"
+          echo "successfully completed frontend restart script!"
