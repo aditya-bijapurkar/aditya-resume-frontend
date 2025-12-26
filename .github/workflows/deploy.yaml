@@ -34,6 +34,16 @@ jobs:
         key: ${{ secrets.INSTANCE_KEY }}
         script: |
           set -e
+
+          cd /home/ubuntu
+          sudo rm -f .env-frontend
+
+          echo "writing secrets to .env-frontend file"
+          sudo bash -c 'cat <<EOF > .env-frontend
+          REACT_APP_API_URL=${{ secrets.BACKEND_API_URL }}
+          REACT_APP_RECAPTCHA_SITE_KEY=${{ secrets.GOOGLE_RECAPTCHA_V3_SITE_KEY }}
+          EOF'
+
           IMAGE=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
           echo "pulling the latest image from docker hub"
           sudo docker pull $IMAGE

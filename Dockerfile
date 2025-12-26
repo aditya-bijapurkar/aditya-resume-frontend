@@ -15,9 +15,6 @@ COPY public/ ./public/
 COPY src/ ./src/
 COPY tsconfig.json ./
 
-ARG GOOGLE_RECAPTCHA_V3_SITE_KEY
-RUN echo "REACT_APP_RECAPTCHA_SITE_KEY=${GOOGLE_RECAPTCHA_V3_SITE_KEY}" > .env
-
 RUN npm run build
 
 FROM nginx:alpine

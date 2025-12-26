@@ -23,7 +23,7 @@ export const chatService = {
                 'x-recaptcha-v3-token': token
             }
 
-            const response = await fetch(`/chat/response`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/chat/response`, {
                 method: 'POST',
                 headers,
                 body: JSON.stringify({

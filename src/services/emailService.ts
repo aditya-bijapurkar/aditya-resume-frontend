@@ -13,7 +13,7 @@ export const emailService = {
         'x-recaptcha-v3-token': token
       };
       
-      const response = await fetch(`/contact/send`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/contact/send`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
