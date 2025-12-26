@@ -52,12 +52,12 @@ const Overview: React.FC = () => {
     },
     {
       id: 5,
-      title: 'AWS Infrastructure',
-      description: 'Built comprehensive infrastructure as code using AWS services including Route53, EC2, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
-      technologies: ['AWS', 'S3', 'Route53', 'EC2', 'ACM', 'RDS', 'CloudFront', 'SES'],
+      title: 'AWS + OCI + Cloudflare Infrastructure',
+      description: 'Built comprehensive infrastructure as code using AWS services including Route53, OCI Compute, Cloudflare DNS, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
+      technologies: ['AWS', 'OCI', 'Cloudflare', 'Route53', 'Compute', 'ACM', 'RDS', 'CloudFront', 'SES'],
       image: {
-        src: '/project/aws.png',
-        alt: 'AWS',
+        src: '/project/aws-cf.png',
+        alt: 'AWS + OCI + Cloudflare',
       }, 
       action: 'done'
     },
@@ -97,7 +97,7 @@ const Overview: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/system-architecture-01.svg" 
+                src="/system-architecture-02.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />

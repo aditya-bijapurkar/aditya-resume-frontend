@@ -11,7 +11,8 @@ import Contact from './pages/Contact';
 import './css/App.css';
 import ChatModal from './components/ChatModal';
 import { resumeService } from './services/resumeService';
-
+import { NotificationInterface } from './components/props/NotificationInterface';
+import Notification from './components/Notification';
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 interface ThemeToggleProps {
@@ -74,6 +75,23 @@ interface DownloadResumeProps {
 const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => {
   const [isDownloadingResume, setIsDownloadingResume] = useState(false);
 
+  const [notification, setNotification] = useState<NotificationInterface>({
+    message: '',
+    type: 'info',
+    isVisible: false
+  });
+
+  const showNotification = () => {
+    return (
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        isVisible={notification.isVisible}
+        onClose={() => setNotification({...notification, isVisible: false})}
+      />
+    )
+  }
+
   const getResumeDownloadDate = () => {
     const date = new Date();
     return date.toISOString().split('T')[0].replaceAll('-', '_');
@@ -91,8 +109,9 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => 
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(link.href);
+      setNotification({message: 'Resume downloaded successfully!', type: 'success', isVisible: true});
     } catch (error) {
-      alert(error instanceof Error ? error.message : 'Some error occurred while downloading resume. Sorry for the inconvenience!');
+      setNotification({message: 'Some error occurred while downloading resume. Sorry for the inconvenience!', type: 'error', isVisible: true});
     }
     finally {
       setIsDownloadingResume(false);
@@ -100,14 +119,17 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => 
   };
 
   return (
-    <div className="action-button-wrapper">
-      <button className="action-button" onClick={handleDownloadResume} aria-label="Download Resume" disabled={isDownloadingResume || disabled}>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      </button>
-      {isDownloadingResume ? <p className="action-text">Downloading...</p> : <p className="action-text">Resume</p>}
-    </div>
+    <>
+      {showNotification()}
+      <div className="action-button-wrapper">
+        <button className="action-button" onClick={handleDownloadResume} aria-label="Download Resume" disabled={isDownloadingResume || disabled}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </button>
+        {isDownloadingResume ? <p className="action-text">Downloading...</p> : <p className="action-text">Resume</p>}
+      </div>
+    </>
   );
 };
 
