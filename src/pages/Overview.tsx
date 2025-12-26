@@ -59,6 +59,7 @@ const Overview: React.FC = () => {
         src: '/project/aws-cf.png',
         alt: 'AWS + OCI + Cloudflare',
       }, 
+      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-infra',
       action: 'done'
     },
     {
