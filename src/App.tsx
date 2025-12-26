@@ -88,23 +88,17 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => 
         message={notification.message}
         type={notification.type}
         isVisible={notification.isVisible}
-        onClose={() => setNotification({...notification, isVisible: false})}
+        onClose={() => setNotification({...notification, isVisible: false})}  
       />
     )
   }
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!disabled && !isDownloadingResume) {
-        setShouldAnimate(true);
-        setTimeout(() => setShouldAnimate(false), 1500);
-      }
-    }, 60000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [disabled, isDownloadingResume]);
+    setShouldAnimate(true);
+    setTimeout(() => setShouldAnimate(false), 1500);
+    setTimeout(() => setShouldAnimate(true), 2000);
+    setTimeout(() => setShouldAnimate(false), 3500);
+  }, []);
 
   const getResumeDownloadDate = () => {
     const date = new Date();
