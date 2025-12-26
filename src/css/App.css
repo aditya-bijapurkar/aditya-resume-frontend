@@ -114,6 +114,12 @@ button {
   flex-direction: column;
   gap: 0.2rem;
   align-items: flex-end;
+  transition: z-index 0.3s ease;
+}
+
+.action-buttons-container.modal-open {
+  z-index: 1;
+  pointer-events: none;
 }
 
 .action-button-wrapper {
@@ -136,9 +142,16 @@ button {
   transition: all 0.3s ease;
   box-shadow: var(--card-shadow);
   flex-shrink: 0;
+  z-index: 1000;
 }
 
-.action-button:hover {
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.action-button:hover:not(:disabled) {
   transform: scale(1.1);
   box-shadow: var(--hover-shadow);
 }
@@ -176,7 +189,6 @@ button {
   }
 
   .action-buttons-container {
-    opacity: 0.85;
     gap: 0.5rem;
     flex-direction: row;
   }

@@ -1,7 +1,14 @@
 export const resumeService = {
-    async getResume() : Promise<string> {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/resume/download`);
-        const data = await response.json();
-        return data.data.resume;
+    async getResume() : Promise<Blob> {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/resume/download`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/pdf'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch resume: ${response.status} ${response.statusText}`);
+        }
+        return await response.blob();
     }
 }

@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
 import ScheduleModal from '../components/ScheduleModal';
-import ChatModal from '../components/ChatModal';
 import './css/Pages.css';
 import Notification from '../components/Notification';
 import { NotificationInterface } from '../components/props/NotificationInterface';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  onOpenChat: () => void;
+}
+
+const Home: React.FC<HomeProps> = ({ onOpenChat }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState(false);
   const [notification, setNotification] = useState<NotificationInterface>({
     message: '',
     type: 'info',
@@ -21,14 +23,6 @@ const Home: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-  }
-
-  const handleOpenChat = () => {
-    setIsChatOpen(true);
-  }
-
-  const handleCloseChat = () => {
-    setIsChatOpen(false);
   }
 
   const showNotification = () => {
@@ -91,7 +85,7 @@ const Home: React.FC = () => {
                 <h3>Ask Me Anything</h3>
                 <p>Curious about my experience or skills?</p>
                 <div className="home-cta">
-                  <button className="btn btn-primary" onClick={handleOpenChat}>
+                  <button className="btn btn-primary" onClick={onOpenChat}>
                     Start Chatting
                   </button>
                 </div>
@@ -126,11 +120,6 @@ const Home: React.FC = () => {
         isOpen={isModalOpen} 
         onClose={handleCloseModal} 
         setNotification={setNotification}
-      />
-      
-      <ChatModal 
-        isOpen={isChatOpen} 
-        onClose={handleCloseChat}
       />
     </div>
   );
