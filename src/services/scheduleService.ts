@@ -18,7 +18,7 @@ export interface BookingRequest {
 export const scheduleService = {
   async getAvailability(date: string): Promise<TimeSlot[]> {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/schedule/meet/availability?date=${date}`);
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/schedule/meet/availability?date=${date}`);
       const data = await response.json();
       const availableSlots = data.data.availableSlots;
       
@@ -41,7 +41,7 @@ export const scheduleService = {
 
   async initiateMeeting(booking: BookingRequest, token: string): Promise<{ success: boolean; message: string }> {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/schedule/meet/initiate`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/schedule/meet/initiate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

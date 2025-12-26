@@ -40,7 +40,7 @@ jobs:
 
           echo "writing secrets to .env-frontend file"
           sudo bash -c 'cat <<EOF > .env-frontend
-          REACT_APP_API_URL=${{ secrets.BACKEND_API_URL }}
+          REACT_APP_API_BASE_URL=${{ secrets.BACKEND_API_URL }}
           REACT_APP_RECAPTCHA_SITE_KEY=${{ secrets.GOOGLE_RECAPTCHA_V3_SITE_KEY }}
           EOF'
 
