@@ -74,6 +74,7 @@ interface DownloadResumeProps {
 
 const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => {
   const [isDownloadingResume, setIsDownloadingResume] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
 
   const [notification, setNotification] = useState<NotificationInterface>({
     message: '',
@@ -91,6 +92,19 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => 
       />
     )
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!disabled && !isDownloadingResume) {
+        setShouldAnimate(true);
+        setTimeout(() => setShouldAnimate(false), 1500);
+      }
+    }, 60000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [disabled, isDownloadingResume]);
 
   const getResumeDownloadDate = () => {
     const date = new Date();
@@ -122,7 +136,7 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ disabled = false }) => 
     <>
       {showNotification()}
       <div className="action-button-wrapper">
-        <button className="action-button" onClick={handleDownloadResume} aria-label="Download Resume" disabled={isDownloadingResume || disabled}>
+        <button className={`action-button ${shouldAnimate ? 'download-pulse' : ''}`} onClick={handleDownloadResume} aria-label="Download Resume" disabled={isDownloadingResume || disabled}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
