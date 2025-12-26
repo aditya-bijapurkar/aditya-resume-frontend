@@ -105,74 +105,25 @@ button {
   min-width: 44px;
 }
 
-.chat-button {
-  border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 12px 16px;
-  height: 50px;
-  width: 50px;
-  color: var(--text-primary);
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-  box-shadow: var(--card-shadow);
-}
-
-.chat-button-container {
-  position: fixed;
-  top: 5rem;
-  right: 1rem;
-  z-index: 1002;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-[data-theme="dark"] .chat-button {
-  color: var(--text-secondary);
-  background: var(--bg-secondary);
-  border: 2px solid var(--border-color);
-}
-
-.chat-button:hover {
-  transform: scale(1.05);
-  box-shadow: var(--hover-shadow);
-}
-
-.chat-button svg {
-  width: 20px;
-  height: 20px;
-  color: var(--text-primary);
-}
-
-.chat-text {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  text-align: center;
-  margin: 0;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.theme-toggle {
+.action-buttons-container {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  z-index: 1002;
+  z-index: 1003;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-end;
+}
+
+.action-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.action-button {
   background: var(--bg-secondary);
   border: 2px solid var(--border-color);
   border-radius: 50%;
@@ -184,18 +135,27 @@ button {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: var(--card-shadow);
-  z-index: 1003;
+  flex-shrink: 0;
 }
 
-.theme-toggle:hover {
+.action-button:hover {
   transform: scale(1.1);
   box-shadow: var(--hover-shadow);
 }
 
-.theme-toggle svg {
+.action-button svg {
   width: 20px;
   height: 20px;
   color: var(--text-primary);
+}
+
+.action-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -215,14 +175,19 @@ button {
     font-size: 1.3rem !important;
   }
 
-  .chat-button {
-    width: 50px;
-    height: 50px;
-    padding: 12px 16px;
+  .action-buttons-container {
+    opacity: 0.85;
+    gap: 0.5rem;
+    flex-direction: row;
   }
 
-  .chat-text {
-    font-size: 0.7rem;
+  .action-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .action-text {
+    display: none;
   }
 
   .grecaptcha-badge {
@@ -246,16 +211,6 @@ button {
   h3 {
     font-size: 1.2rem !important;
   }
-
-  .chat-button {
-    width: 50px;
-    height: 50px;
-    padding: 12px 16px;
-  }
-
-  .chat-text {
-    font-size: 0.65rem;
-  }
 }
 
 @media (max-width: 360px) {
@@ -273,16 +228,6 @@ button {
   
   h3 {
     font-size: 1.1rem !important;
-  }
-
-  .chat-button {
-    width: 50px;
-    height: 50px;
-    padding: 12px 16px;
-  }
-
-  .chat-text {
-    font-size: 0.6rem;
   }
 }
 

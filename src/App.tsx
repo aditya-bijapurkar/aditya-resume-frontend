@@ -42,56 +42,76 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-      {isDark ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <circle cx="12" cy="12" r="5" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
-        )
-      }
-    </button>
+    <div className="action-button-wrapper">
+      <button className="action-button" onClick={toggleTheme} aria-label="Toggle theme">
+        {isDark ? (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="5" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )
+        }
+      </button>
+      <p className="action-text">Theme</p>
+    </div>
+  );
+};
+
+const DownloadResume: React.FC = () => {
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Aditya_Bijapurkar_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="action-button-wrapper">
+      <button className="action-button" onClick={handleDownloadResume} aria-label="Download Resume">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      </button>
+      <p className="action-text">Resume</p>
+    </div>
   );
 };
 
 const AppContent: React.FC = () => {
-  const [isChatModalOpen, setIsChatModalOpen] = useState(false);
   const location = useLocation();
 
-  const handleChatModal = () : React.ReactNode => {
-    return (
-      isChatModalOpen 
-      ?  <ChatModal
-          isOpen={isChatModalOpen}
-          onClose={() => setIsChatModalOpen(false)}
-        />
-      : <p className="chat-text">AI Chatbot</p>
-    )
-  }
+  const ChatButton: React.FC = () => {
+    const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
-  const handleChat = () : React.ReactNode => {
     return (
-      <div className="chat-button-container">
-        <button className="chat-button" onClick={() => setIsChatModalOpen(!isChatModalOpen)}>
+      <div className="action-button-wrapper">
+        <button className="action-button" onClick={() => {setIsChatModalOpen(true); }}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418-4.03-8 9-8s9 3.582 9 8z" />
           </svg>
         </button>
-        {handleChatModal()}
+        <p className="action-text">Chat</p>
+        {isChatModalOpen && <ChatModal isOpen={isChatModalOpen} onClose={() => setIsChatModalOpen(false)} />}
       </div>
-    )
-  }
+    );
+  };
 
   const shouldShowChatButton = location.pathname !== "/";
 
   return (
     <>
       <div className="App">
-        <ThemeToggle />
+        <div className="action-buttons-container">
+          <ThemeToggle />
+          <DownloadResume />          
+          {shouldShowChatButton && <ChatButton />}
+        </div>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -103,7 +123,6 @@ const AppContent: React.FC = () => {
           </Route>
         </Routes>
       </div>
-      {shouldShowChatButton && handleChat()}
     </>
   );
 };
