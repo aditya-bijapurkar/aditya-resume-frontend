@@ -162,44 +162,6 @@ button {
   color: var(--text-primary);
 }
 
-@keyframes downloadPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: var(--card-shadow);
-  }
-  50% {
-    transform: scale(1.15);
-    box-shadow: 0 0 20px rgba(94, 136, 215, 0.6), 0 0 40px rgba(94, 136, 215, 0.4), var(--card-shadow);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: var(--card-shadow);
-  }
-}
-
-@keyframes downloadPulseDark {
-  0% {
-    transform: scale(1);
-    box-shadow: var(--card-shadow);
-  }
-  50% {
-    transform: scale(1.15);
-    box-shadow: 0 0 20px rgba(123, 164, 255, 0.6), 0 0 40px rgba(123, 164, 255, 0.4), var(--card-shadow);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: var(--card-shadow);
-  }
-}
-
-.action-button.download-pulse {
-  animation: downloadPulse 1.5s ease-in-out;
-}
-
-[data-theme="dark"] .action-button.download-pulse {
-  animation: downloadPulseDark 1.5s ease-in-out;
-}
-
 .action-text {
   font-size: 0.75rem;
   color: var(--text-secondary);

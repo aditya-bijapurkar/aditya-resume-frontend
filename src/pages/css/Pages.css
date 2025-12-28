@@ -110,8 +110,8 @@
 .home-card {
   background: var(--bg-secondary);
   border-radius: 12px;
-  padding: 1.5rem;
-  margin-top: 1rem;
+  padding: 1rem;
+  margin-top: 0.75rem;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
   max-width: 70%;
@@ -123,16 +123,16 @@
 }
 
 .home-card-content h3 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .home-card-content p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
 }
 
 .home-cta {
@@ -141,8 +141,8 @@
 }
 
 .home-cta .btn {
-  font-size: 0.95rem;
-  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 8px;
 }
 
@@ -162,7 +162,7 @@
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .cta-buttons {
@@ -980,6 +980,10 @@
   .hero-section {
     gap: 1.5rem;
     margin-bottom: 2rem;
+  }
+
+  .hero-section-left {
+    gap: 1rem;
   }
   
   .hero-section-left h2 {

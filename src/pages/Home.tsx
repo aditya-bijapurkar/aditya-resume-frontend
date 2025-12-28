@@ -6,9 +6,10 @@ import { NotificationInterface } from '../components/props/NotificationInterface
 
 interface HomeProps {
   onOpenChat: () => void;
+  onDownloadResume: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onOpenChat }) => {
+const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [notification, setNotification] = useState<NotificationInterface>({
@@ -87,6 +88,17 @@ const Home: React.FC<HomeProps> = ({ onOpenChat }) => {
                 <div className="home-cta">
                   <button className="btn btn-primary" onClick={onOpenChat}>
                     Start Chatting
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="home-card">
+              <div className="home-card-content">
+                <h3>Download My Resume</h3>
+                <p>Get my resume in a PDF file.</p>
+                <div className="home-cta">
+                  <button className="btn btn-primary" onClick={onDownloadResume}>
+                    Download Resume
                   </button>
                 </div>
               </div>
