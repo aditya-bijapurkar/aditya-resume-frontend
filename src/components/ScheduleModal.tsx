@@ -17,6 +17,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
   const [selectedTime, setSelectedTime] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [loading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails[]>([
     { firstName: '', lastName: '', emailId: '' }
   ]);
@@ -27,6 +28,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     setTimeSlots([]);
     setDescription('');
     setLoading(false);
+    setIsSubmitting(false);
     setUserDetails([{ firstName: '', lastName: '', emailId: '' }]);
   }
 
@@ -112,6 +114,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     }
 
     try {
+      setIsSubmitting(true);
       const token = await executeRecaptcha(RECAPTCHA_ACTIONS.SCHEDULE_MEETING);
       
       if (selectedDate && selectedTime) {
@@ -223,7 +226,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
           )}
 
           {selectedDate && selectedTime && !loading && (
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="user-details-section">
                 <h3>Attendee Details</h3>
                 {userDetails.map((user, index) => (
@@ -292,8 +295,10 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
                 <button
                   className="btn btn-primary book-button"
                   type='submit'
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
                 >
-                  Confirm Meeting Schedule
+                  {isSubmitting ? 'Confirming...' : 'Confirm Meeting Schedule'}
                 </button>
               </div>
             </form>
