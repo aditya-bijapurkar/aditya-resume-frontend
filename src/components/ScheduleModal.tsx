@@ -153,6 +153,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
     const IST_OFFSET = 5.5 * 60 * 60000;
     const today = new Date(utc + IST_OFFSET);
+    today.setDate(today.getDate() + 1);
     return today.toISOString().split('T')[0];
   };
 
