@@ -59,7 +59,7 @@ const Sidebar: React.FC = () => {
             </nav>
           </div>
           <div className="sidebar-footer">
-            <p>© 2025. All rights reserved.</p>
+            <p>© 2026. All rights reserved.</p>
           </div>
         </div>
       </div>
