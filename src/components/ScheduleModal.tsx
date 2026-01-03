@@ -37,24 +37,19 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     onClose();
   }
 
-  const generateTimeSlots = () => {
-    const slots: TimeSlot[] = [];
-    for (let hour = 9; hour <= 18; hour++) {
-      const time = `${hour.toString().padStart(2, '0')}:00`;
-      slots.push({ time, available: false });
-    }
-    return slots;
-  };
-
   const fetchAvailability = async (date: string) => {
     setLoading(true);
     try {
-      const slots = await scheduleService.getAvailability(date);
-      setTimeSlots(slots);
-    } catch (error) {
-      console.error('Error fetching availability:', error);
-      setTimeSlots(generateTimeSlots());
-    } finally {
+      const response = await scheduleService.getAvailability(date);
+      if(response.success) {
+        setTimeSlots(response.slots || []);
+      }
+      else {
+        showNotification(response.message || '', 'error');
+        closeModal();
+      }
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -88,11 +83,12 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
     }
   };
 
-  const showNotification = (message: string, type: 'success' | 'error' | 'info') => {
+  const showNotification = (message: string, type: 'success' | 'error' | 'info', duration?: number) => {
     setNotification({
       message,
       type,
-      isVisible: true
+      isVisible: true,
+      duration: duration
     });
   };
 
@@ -128,7 +124,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
         );
         
         if (result.success) {
-          showNotification(result.message, 'success');
+          showNotification(result.message, 'success', 10000);
         } else {
           showNotification(result.message, 'error');
         }

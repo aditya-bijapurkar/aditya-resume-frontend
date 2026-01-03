@@ -109,11 +109,7 @@ const AppContent: React.FC = () => {
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
-  const [notification, setNotification] = useState<NotificationInterface>({
-    message: '',
-    type: 'info',
-    isVisible: false
-  });
+  const [notification, setNotification] = useState<NotificationInterface>({} as NotificationInterface);
 
   const showNotification = () => {
     return (
@@ -122,6 +118,7 @@ const AppContent: React.FC = () => {
         type={notification.type}
         isVisible={notification.isVisible}
         onClose={() => setNotification({...notification, isVisible: false})}  
+        duration={notification.duration || 5000}
       />
     )
   }

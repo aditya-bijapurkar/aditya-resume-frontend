@@ -16,7 +16,7 @@ export interface BookingRequest {
 }
 
 export const scheduleService = {
-  async getAvailability(date: string): Promise<TimeSlot[]> {
+  async getAvailability(date: string): Promise<{ success: boolean; slots?: TimeSlot[]; message?: string } > {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/schedule/meet/availability?date=${date}`);
       const data = await response.json();
@@ -32,10 +32,10 @@ export const scheduleService = {
         slots.push({ time, available });
       }
       
-      return slots;
-    } catch (error) {
-      console.error('Error fetching availability:', error);
-      throw error;
+      return { success: true, slots };
+    }
+    catch (error) {
+      return { success: false, message: 'Error fetching availability. Please try again later.' };
     }
   },
 
