@@ -33,45 +33,49 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
       <div className="page-content">
         <div className="hero-section">
           <div className="hero-section-left">
-            <h2>Welcome to my portfolio!</h2>
-            <p>
-            I'm a Certified Kubernetes Application Developer with a passion for building scalable, reliable, and secure systems. <br/>
-            With hands-on experience in Backend Development using Java Spring Boot and Python Django, 
-            I specialize in designing and developing microservices architectures that are both maintainable and efficient.
-            </p>
-            <div className="home-card">
-              <div className="home-card-content">
-                <h3>Schedule a call with me</h3>
-                <p>Let's connect over a Zoom meeting!</p>
-                <div className="home-cta">
-                  <button className="btn btn-primary" onClick={onOpenSchedule}>
-                    Schedule a call
-                  </button>
+            <>
+              <h2>Welcome to my portfolio!</h2>
+              <p>
+              I'm a Certified Kubernetes Application Developer with a passion for building scalable, reliable, and secure systems. <br/>
+              With hands-on experience in Backend Development using Java Spring Boot and Python Django, 
+              I specialize in designing and developing microservices architectures that are both maintainable and efficient.
+              </p>
+            </>
+            <>
+              <div className="home-card">
+                <div className="home-card-content">
+                  <h3>Schedule a call with me</h3>
+                  <p>Let's connect over a Zoom meeting!</p>
+                  <div className="home-cta">
+                    <button className="btn btn-primary" onClick={onOpenSchedule}>
+                      Schedule a call
+                    </button>
+                  </div>
+                </div>
+              </div> 
+              <div className="home-card">
+                <div className="home-card-content">
+                  <h3>Ask me anything</h3>
+                  <p>Curious about my experience or skills?</p>
+                  <div className="home-cta">
+                    <button className="btn btn-primary" onClick={onOpenChat}>
+                      Start Chatting
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div> 
-            <div className="home-card">
-              <div className="home-card-content">
-                <h3>Ask me anything</h3>
-                <p>Curious about my experience or skills?</p>
-                <div className="home-cta">
-                  <button className="btn btn-primary" onClick={onOpenChat}>
-                    Start Chatting
-                  </button>
+              <div className="home-card">
+                <div className="home-card-content">
+                  <h3>Download my resume</h3>
+                  <p>Get my resume in a PDF file!</p>
+                  <div className="home-cta">
+                    <button className="btn btn-primary" onClick={onDownloadResume}>
+                      Download Resume
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="home-card">
-              <div className="home-card-content">
-                <h3>Download my resume</h3>
-                <p>Get my resume in a PDF file!</p>
-                <div className="home-cta">
-                  <button className="btn btn-primary" onClick={onDownloadResume}>
-                    Download Resume
-                  </button>
-                </div>
-              </div>
-            </div>
+            </>
           </div>
           <div className="hero-section-right">
             <img 

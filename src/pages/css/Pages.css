@@ -104,7 +104,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  margin-bottom: 3rem;
 }
 
 .home-card {
@@ -125,14 +124,12 @@
 .home-card-content h3 {
   font-size: 1.2rem;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
 }
 
 .home-card-content p {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.4;
-  margin-bottom: 1rem;
 }
 
 .home-cta {
@@ -146,6 +143,12 @@
   border-radius: 8px;
 }
 
+.hero-section-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .hero-section-left h2 {
   font-size: 2rem;
   color: var(--text-primary);
@@ -155,14 +158,13 @@
 .hero-section-left h3 {
   font-size: 1.5rem;
   color: var(--text-primary);
-  margin-bottom: 1rem;
 }
 
 .hero-section-left p {
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 .cta-buttons {
