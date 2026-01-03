@@ -1,41 +1,12 @@
-import React, {useState} from 'react';
-import ScheduleModal from '../components/ScheduleModal';
+import React from 'react';
 import './css/Pages.css';
-import Notification from '../components/Notification';
-import { NotificationInterface } from '../components/props/NotificationInterface';
-
 interface HomeProps {
+  onOpenSchedule: () => void;
   onOpenChat: () => void;
   onDownloadResume: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [notification, setNotification] = useState<NotificationInterface>({
-    message: '',
-    type: 'info',
-    isVisible: false
-  });
-
-  const handleScheduleCall = () => {
-    setIsModalOpen(true);
-  }
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  }
-
-  const showNotification = () => {
-    return (
-      <Notification
-        message={notification.message}
-        type={notification.type}
-        isVisible={notification.isVisible}
-        onClose={() => setNotification({...notification, isVisible: false})}
-      />
-    )
-  }
+const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResume }) => {
 
   const getYearsOfExperience = (startDate: string) : number => {
     const start = new Date(startDate);
@@ -58,8 +29,6 @@ const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
         <h1>Aditya Bijapurkar</h1>
         <p className="subtitle">Personal Portfolio Website</p>
       </div>
-
-      {showNotification()}
       
       <div className="page-content">
         <div className="hero-section">
@@ -72,10 +41,10 @@ const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
             </p>
             <div className="home-card">
               <div className="home-card-content">
-                <h3>Schedule a 1-on-1 call with me</h3>
+                <h3>Schedule a call with me</h3>
                 <p>Let's connect over a Zoom meeting!</p>
                 <div className="home-cta">
-                  <button className="btn btn-primary" onClick={handleScheduleCall}>
+                  <button className="btn btn-primary" onClick={onOpenSchedule}>
                     Schedule a call
                   </button>
                 </div>
@@ -83,7 +52,7 @@ const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
             </div> 
             <div className="home-card">
               <div className="home-card-content">
-                <h3>Ask Me Anything</h3>
+                <h3>Ask me anything</h3>
                 <p>Curious about my experience or skills?</p>
                 <div className="home-cta">
                   <button className="btn btn-primary" onClick={onOpenChat}>
@@ -94,8 +63,8 @@ const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
             </div>
             <div className="home-card">
               <div className="home-card-content">
-                <h3>Download My Resume</h3>
-                <p>Get my resume in a PDF file.</p>
+                <h3>Download my resume</h3>
+                <p>Get my resume in a PDF file!</p>
                 <div className="home-cta">
                   <button className="btn btn-primary" onClick={onDownloadResume}>
                     Download Resume
@@ -127,12 +96,6 @@ const Home: React.FC<HomeProps> = ({ onOpenChat, onDownloadResume }) => {
           </div>
         </div>
       </div>
-      
-      <ScheduleModal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-        setNotification={setNotification}
-      />
     </div>
   );
 };

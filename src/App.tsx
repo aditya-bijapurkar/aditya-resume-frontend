@@ -9,17 +9,18 @@ import Experience from './pages/Experience';
 import Skills from './pages/Skills';
 import Contact from './pages/Contact';
 import './css/App.css';
-import ChatModal from './components/ChatModal';
 import { resumeService } from './services/resumeService';
 import { NotificationInterface } from './components/props/NotificationInterface';
 import Notification from './components/Notification';
+import ScheduleModal from './components/ScheduleModal';
+import ChatModal from './components/ChatModal';
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 interface ThemeToggleProps {
-  disabled?: boolean;
+  disabled: boolean;
 }
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ disabled = false }) => {
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ disabled }) => {
   const [isDark, setIsDark] = useState(false);
 
   const setTheme = (theme: 'light' | 'dark') => {
@@ -68,6 +69,23 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ disabled = false }) => {
   );
 };
 
+interface ChatButtonProps {
+  onOpenChat: () => void;
+  disabled: boolean;
+}
+
+const ChatButton: React.FC<ChatButtonProps> = ({ onOpenChat, disabled }) => {
+  return (
+    <div className="action-button-wrapper">
+      <button className="action-button" onClick={onOpenChat} disabled={disabled}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418-4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      </button>
+      <p className="action-text">Chat</p>
+    </div>
+  );
+};
 interface DownloadResumeProps {
   disabled: boolean;
   onDownloadResume: () => void;
@@ -88,6 +106,7 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ onDownloadResume, disab
 
 const AppContent: React.FC = () => {
   const location = useLocation();
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
   const [notification, setNotification] = useState<NotificationInterface>({
@@ -107,8 +126,20 @@ const AppContent: React.FC = () => {
     )
   }
 
+  const handleOpenSchedule = () => {
+    setIsScheduleModalOpen(true);
+  };
+
+  const handleCloseSchedule = () => {
+    setIsScheduleModalOpen(false);
+  };
+
   const handleOpenChat = () => {
     setIsChatModalOpen(true);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatModalOpen(false);
   };
 
   const getResumeDownloadDate = () => {
@@ -133,23 +164,6 @@ const AppContent: React.FC = () => {
     }
   };
 
-  const handleCloseChat = () => {
-    setIsChatModalOpen(false);
-  };
-
-  const ChatButton: React.FC = () => {
-    return (
-      <div className="action-button-wrapper">
-        <button className="action-button" onClick={handleOpenChat} disabled={isChatModalOpen}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418-4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-        </button>
-        <p className="action-text">Chat</p>
-      </div>
-    );
-  };
-
   const shouldShowChatButton = location.pathname !== "/";
   const shouldShowDownloadResumeButton = location.pathname !== "/";
 
@@ -157,14 +171,14 @@ const AppContent: React.FC = () => {
     <>
       {showNotification()}
       <div className="App">
-        <div className={`action-buttons-container ${isChatModalOpen ? 'modal-open' : ''}`}>
-          <ThemeToggle disabled={isChatModalOpen} />
-          {shouldShowDownloadResumeButton && <DownloadResume onDownloadResume={handleDownloadResume} disabled={isChatModalOpen} />}
-          {shouldShowChatButton && <ChatButton />}
+        <div className={`action-buttons-container ${(isScheduleModalOpen || isChatModalOpen) ? 'modal-open' : ''}`}>
+          <ThemeToggle disabled={isScheduleModalOpen || isChatModalOpen} />
+          {shouldShowChatButton && <ChatButton onOpenChat={handleOpenChat} disabled={(isScheduleModalOpen || isChatModalOpen)} />}
+          {shouldShowDownloadResumeButton && <DownloadResume onDownloadResume={handleDownloadResume} disabled={(isScheduleModalOpen || isChatModalOpen)} />}
         </div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home onOpenChat={handleOpenChat} onDownloadResume={handleDownloadResume} />} />
+            <Route index element={<Home onOpenSchedule={handleOpenSchedule} onOpenChat={handleOpenChat} onDownloadResume={handleDownloadResume} />} />
             <Route path="details" element={<Overview />} />
             <Route path="cost" element={<Cost />} />
             <Route path="experience" element={<Experience />} />
@@ -172,7 +186,8 @@ const AppContent: React.FC = () => {
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
-        {isChatModalOpen && <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} />}
+        {isScheduleModalOpen && <ScheduleModal isOpen={isScheduleModalOpen} onClose={handleCloseSchedule} setNotification={setNotification} />}
+        {isChatModalOpen && <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} setNotification={setNotification} />}
       </div>
     </>
   );

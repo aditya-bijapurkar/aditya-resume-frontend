@@ -3,24 +3,18 @@ import './css/ChatModal.css';
 import { ChatMessageInterface } from './props/ChatMessageInterface';
 import { chatService } from '../services/chatService';
 import { NotificationInterface } from './props/NotificationInterface';
-import Notification from './Notification';
 import { useRecaptcha, RECAPTCHA_ACTIONS } from '../services/recaptchaService'
 
 interface ChatModalProps {
     isOpen: boolean;
     onClose: () => void;
+    setNotification: (notification: NotificationInterface) => void;
 }
 
-const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
+const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose, setNotification }) => {
     const { executeRecaptcha, isRecaptchaAvailable } = useRecaptcha();
     const [currInput, setCurrInput] = useState<string>('');
     const [inputDisabled, setInputDisabled] = useState<boolean>(false);
-    const [notification, setNotification] = useState<NotificationInterface>({
-        message: '',
-        type: 'error',
-        isVisible: false
-    });
-
     const [chatMessages, setChatMessages] = useState<ChatMessageInterface[]>(() => {
         const saved = localStorage.getItem('chatMessages');
         return saved ? JSON.parse(saved) : [];
@@ -111,21 +105,8 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
 
     if(!isOpen) return null;
 
-    const showNotification = () : React.ReactNode => {
-        return (
-            <Notification
-                message={notification.message}
-                type={notification.type}
-                isVisible={notification.isVisible}
-                onClose={() => setNotification({...notification, isVisible: false})}
-            />
-        )
-    }
-
     return (
-        <div className="modal-overlay" onClick={closeModal}>
-            {showNotification()}
-
+        <div className="chat-modal-overlay" onClick={closeModal}>
             <div className={`chat-container ${isOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
                 <div className="chat-header">
                     <h1>Ask RAG framework</h1>
@@ -157,7 +138,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ isOpen, onClose }) => {
                     {
                         chatMessages.length === 0
                          ? (
-                            <div className="empty-chat-message">Start a new Chat!</div>
+                            <div className="chat-empty-chat-message">Start a new Chat!</div>
                          )
                         : chatMessages.map((message, index) => (
                             <div key={index} className={`chat-message ${message.type}`}>

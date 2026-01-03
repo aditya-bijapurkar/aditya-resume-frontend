@@ -169,17 +169,17 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
+    <div className="schedule-modal-overlay" onClick={closeModal}>
+      <div className="schedule-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="schedule-modal-header">
           <h2>Schedule a Call</h2>
-          <button className="close-button" onClick={closeModal}>×</button>
+          <button className="schedule-close-button" onClick={closeModal}>×</button>
         </div>
       
-        <div className="modal-body">
-          <div className="date-selection">
+        <div className="schedule-modal-body">
+          <div className="schedule-date-selection">
             <label htmlFor="date-picker">Select Date:</label>
-            <p className="date-picker-note">All dates and times are as per IST (UTC+5:30).</p>
+            <p className="schedule-date-picker-note">All dates and times are as per IST (UTC+5:30).</p>
             <input
               type="date"
               id="date-picker"
@@ -193,29 +193,29 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
 
           {selectedDate && (
             <>
-              <div className="time-selection">
+              <div className="schedule-time-selection">
                 <h3>Available Time Slots for {selectedDate} (IST)</h3>
                 {loading ? (
-                  <div className="loading">Loading available slots...</div>
+                  <div className="schedule-loading">Loading available slots...</div>
                 ) : (
-                  <div className="time-slots">
+                  <div className="schedule-time-slots">
                     {timeSlots.map((slot) => (
                       <button
                         key={slot.time}
-                        className={`time-slot ${!slot.available ? 'unavailable' : ''} ${
-                          selectedTime === slot.time ? 'selected' : ''
+                        className={`schedule-time-slot ${!slot.available ? 'schedule-unavailable' : ''} ${
+                          selectedTime === slot.time ? 'schedule-selected' : ''
                         }`}
                         onClick={() => slot.available && handleTimeSelect(slot.time)}
                         disabled={!slot.available}
                       >
                         {slot.time}
-                        {slot.available ? <span className="available-text">Available</span> : <span className="unavailable-text">Unavailable</span>}
+                        {slot.available ? <span className="schedule-available-text">Available</span> : <span className="schedule-unavailable-text">Unavailable</span>}
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-              <div className="form-group">
+              <div className="schedule-form-group">
                 <label htmlFor="description">Enter a meeting agenda</label>
                 <input
                   type="text"
@@ -228,24 +228,24 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
 
           {selectedDate && selectedTime && !loading && (
             <form>
-              <div className="user-details-section">
+              <div className="schedule-user-details-section">
                 <h3>Attendee Details</h3>
                 {userDetails.map((user, index) => (
-                  <div key={index} className="user-form">
-                    <div className="user-header">
+                  <div key={index} className="schedule-user-form">
+                    <div className="schedule-user-header">
                       <h4>Attendee {index + 1}</h4>
                       {userDetails.length > 1 && (
                         <button 
                           type="button" 
-                          className="remove-user-btn"
+                          className="schedule-remove-user-btn"
                           onClick={() => removeUser(index)}
                         >
                           Remove
                         </button>
                       )}
                     </div>
-                    <div className="form-row">
-                      <div className="form-group">
+                    <div className="schedule-form-row">
+                      <div className="schedule-form-group">
                         <label htmlFor={`firstName-${index}`}>First Name *</label>
                         <input
                           type="text"
@@ -255,7 +255,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
                           required
                         />
                       </div>
-                      <div className="form-group">
+                      <div className="schedule-form-group">
                         <label htmlFor={`lastName-${index}`}>Last Name *</label>
                         <input
                           type="text"
@@ -266,7 +266,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
                         />
                       </div>
                     </div>
-                    <div className="form-group">
+                    <div className="schedule-form-group">
                       <label htmlFor={`email-${index}`}>Email *</label>
                       <input
                         type="email"
@@ -281,20 +281,20 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
                 
                 <button 
                   type="button" 
-                  className="btn btn-secondary add-user-btn"
+                  className="btn btn-secondary schedule-add-user-btn"
                   onClick={addUser}
                 >
                   + Add Another Attendee
                 </button>
               </div>
 
-              <div className="booking-summary">
+              <div className="schedule-booking-summary">
                 <h3>Booking Summary</h3>
                 <p>Date: {selectedDate}</p>
                 <p>Time: {selectedTime}</p>
                 <p>Attendees: {userDetails.length}</p>
                 <button
-                  className="btn btn-primary book-button"
+                  className="btn btn-primary schedule-book-button"
                   type='submit'
                   onClick={handleSubmit}
                   disabled={isSubmitting}
