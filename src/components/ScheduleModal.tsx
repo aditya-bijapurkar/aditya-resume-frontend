@@ -223,7 +223,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
           )}
 
           {selectedDate && selectedTime && !loading && (
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="schedule-user-details-section">
                 <h3>Attendee Details</h3>
                 {userDetails.map((user, index) => (
@@ -292,7 +292,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ isOpen, onClose, setNotif
                 <button
                   className="btn btn-primary schedule-book-button"
                   type='submit'
-                  onClick={handleSubmit}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Confirming...' : 'Confirm Meeting Schedule'}
