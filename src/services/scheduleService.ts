@@ -215,20 +215,12 @@ export const scheduleService = {
         return null;
       }
       
-      const response = await fetch(`${process.env.REACT_APP_AUTH_BASE_URL}/me`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const data = await response.json();
-      const status = response.status;
+      const decoded = decodeJWT(token);
+      if (decoded && decoded.loggedInUserDetails) {
+        return decoded.loggedInUserDetails;
+      }
       
-      if(status === 200 && data.user) {
-        return { username: data.user.username};
-      }
-      else {
-        return null;
-      }
+      return null;
     }
     catch (error) {
       throw error;
