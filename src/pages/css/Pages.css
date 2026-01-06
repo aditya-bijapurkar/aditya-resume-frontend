@@ -934,8 +934,8 @@
   }
   
   .quick-stats {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
     margin-top: 3rem;
   }
   
@@ -1026,17 +1026,21 @@
   }
   
   .quick-stats {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
     margin-top: 2rem;
   }
   
   .stat-card {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   
   .stat-card h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+  
+  .stat-card p {
+    font-size: 0.75rem;
   }
   
   .btn {
@@ -1074,7 +1078,6 @@
   }
 }
 
-/* Cost Analysis Styles */
 .cost-table-container {
   background: var(--bg-secondary);
   border-radius: 12px;

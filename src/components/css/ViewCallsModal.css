@@ -242,10 +242,19 @@
   transition: color 0.3s ease;
   min-height: 44px;
   min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .view-calls-auth-back-button:hover {
   color: var(--text-primary);
+}
+
+.view-calls-back-icon {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
 }
 
 .view-calls-form-group {
@@ -316,14 +325,13 @@
     font-size: 0.9rem;
   }
 
-  .view-calls-auth-form-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
   .view-calls-auth-form-header h3 {
     font-size: 1.2rem;
+  }
+
+  .view-calls-back-icon {
+    width: 32px;
+    height: 32px;
   }
 
   .view-calls-form-group input {
@@ -742,6 +750,11 @@
   .view-calls-modal-remove-user-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.75rem;
+  }
+
+  .view-calls-back-icon {
+    width: 32px;
+    height: 32px;
   }
 
   .view-calls-modal-form-group input {
