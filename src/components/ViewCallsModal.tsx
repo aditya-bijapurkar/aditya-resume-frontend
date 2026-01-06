@@ -221,7 +221,7 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
                                     <table className="view-calls-table">
                                         <thead>
                                             <tr>
-                                                <th>Date</th>
+                                                <th>Scheduled At</th>
                                                 <th>Description</th>
                                                 <th>Platform</th>
                                                 <th>Link</th>
