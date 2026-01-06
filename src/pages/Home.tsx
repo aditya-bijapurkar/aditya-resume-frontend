@@ -4,9 +4,10 @@ interface HomeProps {
   onOpenSchedule: () => void;
   onOpenChat: () => void;
   onDownloadResume: () => void;
+  onViewCalls: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResume }) => {
+const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResume, onViewCalls }) => {
 
   const getYearsOfExperience = (startDate: string) : number => {
     const start = new Date(startDate);
@@ -46,9 +47,12 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
                 <div className="home-card-content">
                   <h3>Schedule a call with me</h3>
                   <p>Let's connect over a Zoom meeting!</p>
-                  <div className="home-cta">
+                  <div className="home-cta" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                     <button className="btn btn-primary" onClick={onOpenSchedule}>
                       Schedule a call
+                    </button>
+                    <button className="btn btn-secondary" style={{ textDecoration: 'none', fontSize: '0.85rem', padding: '0.5rem 1rem' }} onClick={onViewCalls}>
+                      View your calls
                     </button>
                   </div>
                 </div>

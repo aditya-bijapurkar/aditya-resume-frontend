@@ -14,6 +14,7 @@ import { NotificationInterface } from './components/props/NotificationInterface'
 import Notification from './components/Notification';
 import ScheduleModal from './components/ScheduleModal';
 import ChatModal from './components/ChatModal';
+import ViewCallsModal from './components/ViewCallsModal';
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 interface ThemeToggleProps {
@@ -107,6 +108,7 @@ const DownloadResume: React.FC<DownloadResumeProps> = ({ onDownloadResume, disab
 const AppContent: React.FC = () => {
   const location = useLocation();
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
+  const [isViewCallsModalOpen, setIsViewCallsModalOpen] = useState(false);
   const [isChatModalOpen, setIsChatModalOpen] = useState(false);
 
   const [notification, setNotification] = useState<NotificationInterface>({} as NotificationInterface);
@@ -129,6 +131,14 @@ const AppContent: React.FC = () => {
 
   const handleCloseSchedule = () => {
     setIsScheduleModalOpen(false);
+  };
+
+  const handleViewCalls = () => {
+    setIsViewCallsModalOpen(true);
+  };
+
+  const handleCloseViewCalls = () => {
+    setIsViewCallsModalOpen(false);
   };
 
   const handleOpenChat = () => {
@@ -168,14 +178,14 @@ const AppContent: React.FC = () => {
     <>
       {showNotification()}
       <div className="App">
-        <div className={`action-buttons-container ${(isScheduleModalOpen || isChatModalOpen) ? 'modal-open' : ''}`}>
-          <ThemeToggle disabled={isScheduleModalOpen || isChatModalOpen} />
-          {shouldShowChatButton && <ChatButton onOpenChat={handleOpenChat} disabled={(isScheduleModalOpen || isChatModalOpen)} />}
-          {shouldShowDownloadResumeButton && <DownloadResume onDownloadResume={handleDownloadResume} disabled={(isScheduleModalOpen || isChatModalOpen)} />}
+        <div className={`action-buttons-container ${(isScheduleModalOpen || isChatModalOpen || isViewCallsModalOpen) ? 'modal-open' : ''}`}>
+          <ThemeToggle disabled={isScheduleModalOpen || isChatModalOpen || isViewCallsModalOpen} />
+          {shouldShowChatButton && <ChatButton onOpenChat={handleOpenChat} disabled={(isScheduleModalOpen || isChatModalOpen || isViewCallsModalOpen)} />}
+          {shouldShowDownloadResumeButton && <DownloadResume onDownloadResume={handleDownloadResume} disabled={(isScheduleModalOpen || isChatModalOpen || isViewCallsModalOpen)} />}
         </div>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home onOpenSchedule={handleOpenSchedule} onOpenChat={handleOpenChat} onDownloadResume={handleDownloadResume} />} />
+            <Route index element={<Home onOpenSchedule={handleOpenSchedule} onOpenChat={handleOpenChat} onDownloadResume={handleDownloadResume} onViewCalls={handleViewCalls} />} />
             <Route path="details" element={<Overview />} />
             <Route path="cost" element={<Cost />} />
             <Route path="experience" element={<Experience />} />
@@ -184,6 +194,7 @@ const AppContent: React.FC = () => {
           </Route>
         </Routes>
         {isScheduleModalOpen && <ScheduleModal isOpen={isScheduleModalOpen} onClose={handleCloseSchedule} setNotification={setNotification} />}
+        {isViewCallsModalOpen && <ViewCallsModal isOpen={isViewCallsModalOpen} onClose={handleCloseViewCalls} setNotification={setNotification} />}
         {isChatModalOpen && <ChatModal isOpen={isChatModalOpen} onClose={handleCloseChat} setNotification={setNotification} />}
       </div>
     </>

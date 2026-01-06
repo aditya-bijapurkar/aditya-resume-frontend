@@ -24,6 +24,7 @@ jobs:
         IMAGE_NAME=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
         docker buildx build --platform linux/amd64 \
           --build-arg REACT_APP_API_BASE_URL=${{ secrets.BACKEND_API_URL }} \
+          --build-arg REACT_APP_AUTH_BASE_URL=${{ secrets.AUTH_API_URL }} \
           --build-arg GOOGLE_RECAPTCHA_V3_SITE_KEY=${{ secrets.GOOGLE_RECAPTCHA_V3_SITE_KEY }} \
           -t $IMAGE_NAME --push .
 

@@ -1,0 +1,773 @@
+.view-calls-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  z-index: 1001;
+  padding-top: 9rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  gap: 1rem;
+}
+
+.view-calls-modal-content {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: var(--card-shadow);
+  animation: view-calls-modal-slideIn 0.3s ease;
+  margin: 0 auto;
+}
+
+.view-calls-modal-content-with-table {
+  max-width: 1200px;
+}
+
+.view-calls-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.view-calls-modal-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.view-calls-modal-close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.view-calls-modal-close-button:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.view-calls-modal-body {
+  padding: 1.5rem;
+}
+
+/* Calls Table */
+.view-calls-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.view-calls-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-secondary);
+  font-size: 0.9rem;
+}
+
+.view-calls-table thead {
+  background: var(--bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.view-calls-table th {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.view-calls-table td {
+  padding: 1rem 0.75rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.view-calls-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.view-calls-table tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+.view-calls-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.view-calls-link {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.view-calls-link:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+.view-calls-no-link {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.view-calls-status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.view-calls-status-scheduled {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.view-calls-status-declined {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.view-calls-status-pending_approval {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.view-calls-empty-state {
+  text-align: center;
+  padding: 2rem;
+}
+
+.view-calls-empty-state h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.view-calls-empty-state p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Auth Prompt */
+.view-calls-auth-prompt {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.view-calls-auth-message {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.view-calls-auth-submessage {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.view-calls-auth-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.view-calls-auth-buttons .btn {
+  min-width: 120px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Auth Form */
+.view-calls-auth-form {
+  padding: 0.5rem 0;
+}
+
+.view-calls-auth-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.view-calls-auth-form-header h3 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.view-calls-auth-back-button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.view-calls-auth-back-button:hover {
+  color: var(--text-primary);
+}
+
+.view-calls-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.view-calls-form-group label {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.view-calls-form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 44px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.view-calls-form-group input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.view-calls-form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.view-calls-form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.view-calls-auth-form-actions {
+  margin-top: 1.5rem;
+}
+
+.view-calls-auth-form-actions .btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .view-calls-auth-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .view-calls-auth-buttons .btn {
+    width: 100%;
+  }
+
+  .view-calls-auth-message {
+    font-size: 1rem;
+  }
+
+  .view-calls-auth-submessage {
+    font-size: 0.9rem;
+  }
+
+  .view-calls-auth-form-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .view-calls-auth-form-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .view-calls-form-group input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+.view-calls-modal-date-selection {
+  margin-bottom: 2rem;
+}
+
+.view-calls-modal-date-selection label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.view-calls-modal-date-picker-note {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.view-calls-modal-date-selection input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  min-height: 44px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.view-calls-modal-date-selection input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+/* Time Selection */
+.view-calls-modal-time-selection {
+  margin-bottom: 2rem;
+}
+
+.view-calls-modal-time-selection h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.view-calls-modal-loading {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 2rem;
+  font-style: italic;
+}
+
+.view-calls-modal-time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+}
+
+.view-calls-modal-time-slot {
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+.view-calls-modal-time-slot:hover:not(.view-calls-modal-unavailable) {
+  border-color: var(--accent-primary);
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+}
+
+.view-calls-modal-time-slot.view-calls-modal-selected {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+  border-color: var(--accent-primary);
+}
+
+.view-calls-modal-time-slot.view-calls-modal-unavailable {
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  border-color: var(--border-color);
+}
+
+.view-calls-modal-unavailable-text {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--error-text);
+}
+
+.view-calls-modal-available-text {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--success-text);
+}
+
+.view-calls-modal-booking-summary {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+.view-calls-modal-booking-summary h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.view-calls-modal-booking-summary p {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.view-calls-modal-book-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  min-height: 44px;
+}
+
+.view-calls-modal-user-details-section {
+  margin-bottom: 2rem;
+}
+
+.view-calls-modal-user-details-section h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.view-calls-modal-user-form {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.view-calls-modal-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.view-calls-modal-user-header h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.view-calls-modal-remove-user-btn {
+  background: var(--error-text);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.view-calls-modal-remove-user-btn:hover {
+  background: #c82333;
+}
+
+.view-calls-modal-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.view-calls-modal-form-group {
+  margin-bottom: 1rem;
+}
+
+.view-calls-modal-form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.view-calls-modal-form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  min-height: 44px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.view-calls-modal-form-group input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.view-calls-modal-add-user-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--text-secondary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  min-height: 44px;
+}
+
+.view-calls-modal-add-user-btn:hover {
+  background: var(--text-muted);
+}
+
+@keyframes view-calls-modal-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes view-calls-modal-slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .view-calls-modal-overlay {
+    padding-top: 9rem;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .view-calls-modal-content {
+    max-width: 600px;
+  }
+
+  .view-calls-modal-content-with-table {
+    max-width: 95%;
+  }
+
+  .view-calls-modal-time-slots {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .view-calls-modal-overlay {
+    justify-content: center;
+    padding-top: 9rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .view-calls-modal-content {
+    width: 95%;
+    max-height: 70vh;
+  }
+
+  .view-calls-modal-header {
+    padding: 1rem;
+  }
+
+  .view-calls-modal-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .view-calls-modal-body {
+    padding: 1rem;
+  }
+
+  .view-calls-table {
+    font-size: 0.8rem;
+  }
+
+  .view-calls-table th,
+  .view-calls-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .view-calls-modal-time-slots {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .view-calls-modal-time-slot {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    min-height: 44px;
+  }
+
+  .view-calls-modal-form-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .view-calls-modal-user-form {
+    padding: 1rem;
+  }
+
+  .view-calls-modal-booking-summary {
+    padding: 1rem;
+  }
+
+  .view-calls-modal-book-button {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-calls-modal-overlay {
+    padding-top: 9rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    gap: 0.25rem;
+  }
+
+  .view-calls-modal-content {
+    width: 98%;
+  }
+
+  .view-calls-modal-header {
+    padding: 0.75rem;
+  }
+
+  .view-calls-modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .view-calls-modal-body {
+    padding: 0.75rem;
+  }
+
+  .view-calls-table {
+    font-size: 0.75rem;
+  }
+
+  .view-calls-table th,
+  .view-calls-table td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .view-calls-status {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .view-calls-modal-time-slots {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.4rem;
+  }
+
+  .view-calls-modal-time-slot {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+    min-height: 44px;
+  }
+
+  .view-calls-modal-time-slot .view-calls-modal-available-text,
+  .view-calls-modal-time-slot .view-calls-modal-unavailable-text {
+    font-size: 0.6rem;
+  }
+
+  .view-calls-modal-user-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .view-calls-modal-remove-user-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
+  .view-calls-modal-form-group input {
+    font-size: 16px;
+  }
+
+  .view-calls-modal-date-selection input {
+    font-size: 16px;
+  }
+
+  .view-calls-modal-book-button {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .view-calls-modal-add-user-btn {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .view-calls-modal-overlay {
+    padding-top: 9rem;
+    padding-right: 0.15rem;
+    padding-left: 0.15rem;
+    gap: 0.2rem;
+  }
+}
