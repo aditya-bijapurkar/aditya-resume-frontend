@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
     <div className="page">
       <div className="page-header">
         <h1>Aditya Bijapurkar</h1>
-        <p className="subtitle">Personal Portfolio Website</p>
+        <p className="subtitle">Engineering Portfolio Website</p>
       </div>
       
       <div className="page-content">

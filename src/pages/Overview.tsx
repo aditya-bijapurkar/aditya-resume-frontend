@@ -7,18 +7,30 @@ const Overview: React.FC = () => {
       id: 1,
       title: 'Microservices Architecture Platform',
       description: 'Designed and implemented a scalable microservices platform using Spring Boot and Docker. Features include multithreading, API controller, prometheus monitoring, and distributed tracing.',
-      technologies: ['Spring Boot', 'Java', 'JPA-Repo','Prometheus', 'Docker', 'PostgreSQL'],
+      technologies: ['SpringBoot', 'Java', 'JPA-Repo','Prometheus', 'Docker', 'PostgreSQL'],
       image: {
         src: '/project/spring.png',
-        alt: 'Spring Boot',
+        alt: 'Backend',
       }, 
       repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-backend',
       action: 'done'
     },
     {
       id: 2,
+      title: 'Authentication & Authorization',
+      description: 'Implemented user management module in Go for subscription based access to the website and added reCAPTCHA V3 to verify human interaction and prevent bot scraping and attacks.',
+      technologies: ['Golang', 'JWT', 'Authentication', 'reCAPTCHA v3', 'User Management'],
+      image: {
+        src: '/project/go-auth.png',
+        alt: 'Authentication',
+      },
+      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-auth',
+      action: 'done'
+    },
+    {
+      id: 3,
       title: 'Docker Containerization and CI / DC',
-      description: 'Created CI / CD pipelines using Github Actions for the application to build, test and deploy to the Docker Hub. Also used Docker Compose to orchestrate the containers on live EC2 instances.',
+      description: 'Created CI / CD pipelines using Github Actions for the application to build, test and deploy to the Docker Hub. Also used Docker Compose to orchestrate the containers on live OCI instance.',
       technologies: ['Docker', 'Docker Compose', 'Dockerfile', 'Github Actions', 'Docker Hub', 'CI/CD'],
       image: {
         src: '/project/docker-cicd.png',
@@ -28,7 +40,7 @@ const Overview: React.FC = () => {
       action: 'done'
     },
     {
-      id: 3,
+      id: 4,
       title: 'RAG Framework and LLM chatbot',
       description: 'Implemented RAG framework using Cosine similarity to retrieve relevant documents from the S3 knowledge base. Implemented LLM chatbot using OpenAI API to answer questions and provide information.',
       technologies: ['RAG', 'Cosine Similarity', 'OpenAI API', 'LLM', 'Chatbot'],
@@ -39,21 +51,9 @@ const Overview: React.FC = () => {
       action: 'done'
     },
     {
-      id: 4,
-      title: 'React-ive Frontend Interface',
-      description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services using reverse proxy.',
-      technologies: ['React', 'TypeScript', 'CSS3', 'React Router', 'React Hooks'],
-      image: {
-        src: '/project/react.jpeg',
-        alt: 'React Txs',
-      }, 
-      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-frontend',
-      action: 'done'
-    },
-    {
       id: 5,
       title: 'AWS + OCI + Cloudflare Infrastructure',
-      description: 'Built comprehensive infrastructure as code using AWS services including Route53, OCI Compute, Cloudflare DNS, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
+      description: 'Built comprehensive infrastructure as code using Cloudflare DNS and AWS services including Route53, OCI Compute, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
       technologies: ['AWS', 'OCI', 'Cloudflare', 'Route53', 'Compute', 'ACM', 'RDS', 'CloudFront', 'SES'],
       image: {
         src: '/project/aws-cf.png',
@@ -64,13 +64,14 @@ const Overview: React.FC = () => {
     },
     {
       id: 6,
-      title: 'Authentication & Authorization',
-      description: 'Implemented reCAPTCHA v3 for the website to prevent unauthorized access and DDOS attacks to the website. TODO - implemented user-management module for subscription based access to the website.',
-      technologies: ['reCAPTCHA v3', 'Auth-service', 'AWS Lambda', 'AWS S3'],
+      title: 'React-ive Frontend Interface',
+      description: 'Developed a React-based frontend interface for the website. Implemented responsive design, component-based architecture, and integration with backend services using reverse proxy.',
+      technologies: ['React', 'TypeScript', 'CSS3', 'React Router', 'React Hooks'],
       image: {
-        src: '/project/incognito.png',
-        alt: 'reCAPTCHA v3',
-      },      
+        src: '/project/react.jpeg',
+        alt: 'React Txs',
+      }, 
+      repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-frontend',
       action: 'done'
     },
   ];
@@ -88,7 +89,7 @@ const Overview: React.FC = () => {
         </div>
         <div className="explanation-section">
           <p>
-            This website is built using Java / SpringBoot and React / TypeScript, running on OCI infrastructure and networked via Cloudflare DNS services.<br/>
+            This website is built using Java SpringBoot, Golang and React TypeScript, running on OCI infrastructure and networked via Cloudflare DNS services.<br/>
             Github Actions CI/CD pipelines are used to build and push images to DockerHub and to orchestrate containers using Docker Compose on servers.
           </p>
         </div>
@@ -98,7 +99,7 @@ const Overview: React.FC = () => {
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
               <img 
-                src="/system-architecture-03.svg" 
+                src="/system-architecture-04.svg" 
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
