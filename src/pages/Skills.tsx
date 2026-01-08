@@ -8,6 +8,12 @@ const Skills: React.FC = () => {
       validity: 'Oct 2025 - Oct 2027',
       provider: 'The Linux Foundation (CNCF)',
       link: 'https://ti-user-certificates.s3.amazonaws.com/e0df7fbf-a057-42af-8a1f-590912be5460/3335f5c7-10b6-4fab-b750-9289969c9f39-aditya-bijapurkar-fb50f4b9-40a7-4516-8d0f-3f91b78a67c0-certificate.pdf'
+    },
+    {
+      name: 'Big Data Computing (Gold medalist)',
+      validity: 'Oct 2023 - NA',
+      provider: 'IIT Kanpur and NPTEL',
+      link: 'https://archive.nptel.ac.in/content/noc/NOC23/SEM2/Ecertificates/106/noc23-cs112/Course/NPTEL23CS112S64510360520077578.pdf'
     }
   ]
 
@@ -16,9 +22,9 @@ const Skills: React.FC = () => {
       category: 'Backend Development',
       skills: [
         { name: 'Java SpringBoot' },
+        { name: '(Go) Golang' },
         { name: 'Python Django' },
         { name: 'PostgreSQL' },
-        { name: 'MongoDB' },
         { name: 'GraphQL' },
         { name: 'REST' },
       ]
