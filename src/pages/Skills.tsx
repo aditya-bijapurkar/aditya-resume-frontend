@@ -56,7 +56,7 @@ const Skills: React.FC = () => {
 
   const additionalSkills = [
     'Github Actions', 'React.js', 'Prometheus', 
-    'Graphana', 'Jenkins', 'CI/CD', 'Microservices', 
+    'Grafana', 'Jenkins', 'CI/CD', 'Microservices', 
     'Authentication', 'Secrets Manager'
   ]
 

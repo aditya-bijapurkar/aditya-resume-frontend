@@ -12,7 +12,7 @@ const Experience: React.FC = () => {
       achievements: [
         'Developed an asynchronous multi-threaded architecture to scale task creation from 10 to 14k+ tasks.',
         'Implemented log tracing in over 6 microserices, streamlining debugging throughout the process lifeline.',
-        'Created Prometheus metrics and alerts on 7+ services and built Graphana dashboards for monitoring.',
+        'Created Prometheus metrics and alerts on 7+ services and built Grafana dashboards for monitoring.',
         'Streamlined process of Lambda functions deployment by writing MAKE commands and creating a pipeline.',
         'Achieved 70% reduction in database search-space by decoupling IVMS application from legacy frameworks.',
       ],
