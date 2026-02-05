@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import { authService } from "../services/authService";
 import { scheduleService } from "../services/scheduleService";
 import { NotificationInterface } from "./props/NotificationInterface";
 import './css/ViewCallsModal.css';
@@ -116,17 +117,21 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
     }
   }, [showNotification]);
 
+  const resetUserDetails = () => {
+    setIsUserLoggedIn(false);
+    setUsername('');
+  }
+
   const checkUserLoggedIn = useCallback(async () => {
-    const loggedInUserDetails = await scheduleService.isUserLoggedIn();
-    
+    const loggedInUserDetails = await authService.getCurrentUser();
+
     if (loggedInUserDetails) {
       setIsUserLoggedIn(true);
       setUsername(loggedInUserDetails.username);
       fetchScheduledCalls();
     }
     else {
-      setIsUserLoggedIn(false);
-      setUsername('');
+      resetUserDetails();
     }
   }, [fetchScheduledCalls]);
 
@@ -150,7 +155,7 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
     }
     setIsSubmitting(true);
     try {
-        const result = await scheduleService.signup({ username, email, password });
+        const result = await authService.signup({ username, email, password });
         if (result.success) {
         showNotification('Sign up successful! Verify your account by clicking the link in the email sent to you.', 'success', 10000);
         } else {
@@ -175,7 +180,7 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
 
     setIsSubmitting(true);
     try {
-      const result = await scheduleService.login({ email, password });
+      const result = await authService.login({ email, password });
       if (result.success) {
         showNotification('Login successful!', 'success');
         checkUserLoggedIn();
@@ -184,7 +189,7 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
       }
     }
     catch (error) {
-      showNotification('An error occurred. Please try again.', 'error');
+      showNotification(error instanceof Error ? error.message : 'An error occurred. Please try again.', 'error');
     }
     finally {
       setIsSubmitting(false);
@@ -193,9 +198,9 @@ const ViewCallsModal: React.FC<ViewCallsModalProps> = ({ isOpen, onClose, setNot
   };
 
   const handleLogout = async () => {
-    await scheduleService.logout();
-    checkUserLoggedIn(); 
-    showNotification('Logged out successfully!', 'success');
+    const result =await authService.logout();
+    showNotification(result.message ?? '', 'success');
+    resetUserDetails();
   };
 
   if (!isOpen) return null;
