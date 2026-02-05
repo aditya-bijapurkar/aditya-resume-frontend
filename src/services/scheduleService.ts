@@ -89,7 +89,7 @@ export const scheduleService = {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: 'Failed to fetch scheduled calls' }));
         const message = response.status === 401
-          ? 'Please login again.'
+          ? 'Some error occurred while fetching scheduled calls. Please try again.'
           : (errorData.message || `Error: ${response.status}`);
         return { success: false, message };
       }
