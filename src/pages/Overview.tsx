@@ -53,8 +53,8 @@ const Overview: React.FC = () => {
     {
       id: 5,
       title: 'AWS + OCI + Cloudflare Infrastructure',
-      description: 'Built comprehensive infrastructure as code using Cloudflare DNS and AWS services including Route53, OCI Compute, ACM, RDS, SES and CloudFront to deploy the website on live servers.',
-      technologies: ['AWS', 'OCI', 'Cloudflare', 'Route53', 'Compute', 'ACM', 'RDS', 'CloudFront', 'SES'],
+      description: 'Built comprehensive infrastructure as code using Cloudflare DNS and AWS and OCI Compute instances to deploy the website on live servers.',
+      technologies: ['AWS', 'OCI', 'Cloudflare', 'Route53', 'Compute', 'CloudFront', 'SES'],
       image: {
         src: '/project/aws-cf.png',
         alt: 'AWS + OCI + Cloudflare',
