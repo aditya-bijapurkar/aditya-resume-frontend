@@ -5,9 +5,21 @@ const Experience: React.FC = () => {
   const experiences = [
     {
       id: 1,
+      company: 'Visa',
+      position: 'Software Engineer',
+      period: '2026 May - Present',
+      description: 'Software Engineer in the IAM team within the Cybersecurity division at Visa.',
+      achievements: [
+        'Monitoring and governing user access across 30,000+ databases across Visa using automated pipelines and scripts.',
+        'Working on revoking access of dorment accounts with no activity for 90 days to meet compliance and security standards.',
+      ],
+      technologies: ['Python', 'IAM', 'Databases']
+    },
+    {
+      id: 2,
       company: 'AiDash',
       position: 'SDE 1',
-      period: '2024 Nov - Present',
+      period: '2024 Nov - 2026 May',
       description: 'Backend Developer at AiDash, designing and developing scalable backend systems using Java SpringBoot and Python Django.',
       achievements: [
         'Developed an asynchronous multi-threaded architecture to scale task creation from 10 to 14k+ tasks.',
@@ -19,7 +31,7 @@ const Experience: React.FC = () => {
       technologies: ['SpringBoot', 'Django', 'AWS', 'Docker', 'Kubernetes']
     },
     {
-      id: 2,
+      id: 3,
       company: 'AiDash',
       position: 'SDE Intern',
       period: '2024 Apr - 2024 Nov',
@@ -48,15 +60,15 @@ const Experience: React.FC = () => {
         <h1>Work Experience</h1>
         <p className="subtitle">My professional journey and achievements</p>
       </div>
-      
+
       <div className="page-content">
-        
+
         <div className="explanation-section">
           <h3>Career Summary</h3>
           <p>
-            I have worked on 2 projects at AiDash, delivering scalable backend solutions for asset management and compliance.<br/>
+            I am currently working at Visa in the IAM team to maintain and monitor user access across various database techs. <br/>
+            I have previously worked on 2 projects at AiDash, delivering scalable backend solutions for asset management and compliance.<br/>
             I have experience in developing and architecting microservices in Java SpringBoot and Python Django while maintaining high code quality and test coverage.<br/>
-            I have deep knowledge about RDBMS (postgres) and NoSQL (mongo) databases and have worked on them extensively.<br/>
             Maintaining high quality code and streamlining the deployment process on AWS has been a top priority for me.<br/>
           </p>
         </div>
@@ -76,10 +88,10 @@ const Experience: React.FC = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="experience-content">
                 <p className="experience-description">{experience.description}</p>
-                
+
                 <div className="experience-achievements">
                   {
                     experience.achievements.length > 0 ? (
@@ -100,10 +112,10 @@ const Experience: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
       </div>
     </div>
   );
 };
 
-export default Experience; 
+export default Experience;

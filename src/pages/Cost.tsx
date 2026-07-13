@@ -21,9 +21,9 @@ const Cost: React.FC = () => {
     },
     {
       id: 2,
-      service: 'AWS Route53',
+      service: 'Namecheap',
       description: 'Domain registration and renewal',
-      yearlyCost: 8,
+      yearlyCost: 11,
       category: 'Hosting'
     },
     {

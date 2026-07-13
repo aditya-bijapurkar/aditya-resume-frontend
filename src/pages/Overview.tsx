@@ -11,7 +11,7 @@ const Overview: React.FC = () => {
       image: {
         src: '/project/spring.png',
         alt: 'Backend',
-      }, 
+      },
       repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-backend',
       action: 'done'
     },
@@ -47,7 +47,7 @@ const Overview: React.FC = () => {
       image: {
         src: '/project/rag.png',
         alt: 'RAG framework',
-      },  
+      },
       action: 'done'
     },
     {
@@ -58,7 +58,7 @@ const Overview: React.FC = () => {
       image: {
         src: '/project/aws-cf.png',
         alt: 'AWS + OCI + Cloudflare',
-      }, 
+      },
       repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-infra',
       action: 'done'
     },
@@ -70,7 +70,7 @@ const Overview: React.FC = () => {
       image: {
         src: '/project/react.jpeg',
         alt: 'React Txs',
-      }, 
+      },
       repoLink: 'https://github.com/aditya-bijapurkar/aditya-resume-frontend',
       action: 'done'
     },
@@ -82,8 +82,8 @@ const Overview: React.FC = () => {
         <h1>Implementation details for the website</h1>
         <p className="subtitle">This page contains the implementation details for the website!</p>
       </div>
-      
-      <div className="page-content">        
+
+      <div className="page-content">
         <div className="sub-header">
           <h2>System Architecture Overview</h2>
         </div>
@@ -94,12 +94,12 @@ const Overview: React.FC = () => {
           </p>
         </div>
 
-        <div className="flowchart-section">   
+        <div className="flowchart-section">
           <div className="flowchart-container">
             <div className="flowchart-image-wrapper">
               <h3>📊 System Architecture Flowchart</h3>
-              <img 
-                src="/system-architecture-06.svg" 
+              <img
+                src="/system-architecture-07.svg"
                 alt="System Architecture Flowchart"
                 className="flowchart-image"
               />
@@ -128,16 +128,16 @@ const Overview: React.FC = () => {
                   {
                     project.repoLink && (
                       <div className="project-actions">
-                        <a 
-                          href={project.repoLink} 
-                          target="_blank" 
+                        <a
+                          href={project.repoLink}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className={`btn btn-secondary ${project.repoLink === '#' ? 'disabled' : ''}`}
                           style={{ pointerEvents: project.repoLink === '#' ? 'none' : 'auto' }}
                         >
                           Repository Link
                         </a>
-                      </div>   
+                      </div>
                     )
                   }
                 </div>
@@ -151,4 +151,4 @@ const Overview: React.FC = () => {
   );
 };
 
-export default Overview; 
+export default Overview;
