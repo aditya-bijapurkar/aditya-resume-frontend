@@ -11,8 +11,8 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
 
   const getYearsOfExperience = (startDate: string) : number => {
     const start = new Date(startDate);
-    const now = new Date(); 
-    
+    const now = new Date();
+
     let yearsExperienced = now.getFullYear() - start.getFullYear();
     let monthsExperienced = (now.getMonth() + 1) - (start.getMonth() + 1);
 
@@ -30,17 +30,16 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
         <h1>Aditya Bijapurkar</h1>
         <p className="subtitle">Engineering Portfolio Website</p>
       </div>
-      
+
       <div className="page-content">
         <div className="hero-section">
           <div className="hero-section-left">
             <>
               <h2>Welcome to my portfolio!</h2>
               <p>
-              I'm a Certified Kubernetes Application Developer with a passion for building scalable, reliable, and secure systems. <br/>
-              With hands-on experience in Backend Development using Java Spring Boot and Python Django, 
-              I specialize in designing and developing microservices architectures that are both maintainable and efficient.
-              </p>
+                I am a Certified AWS Solutions Architect and Certified Kubernetes Application Developer. <br/>
+                I specialize in designing and developing microservices architectures that are both reliable and efficient.
+            </p>
             </>
             <>
               <div className="home-card">
@@ -56,7 +55,7 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
                     </button>
                   </div>
                 </div>
-              </div> 
+              </div>
               <div className="home-card">
                 <div className="home-card-content">
                   <h3>Ask me anything</h3>
@@ -82,9 +81,9 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
             </>
           </div>
           <div className="hero-section-right">
-            <img 
-              src="/aditya-face.jpg" 
-              alt="Aditya Bijapurkar" 
+            <img
+              src="/aditya-face.jpg"
+              alt="Aditya Bijapurkar"
               className="profile-image"
             />
             <div className="quick-stats">
@@ -100,7 +99,7 @@ const Home: React.FC<HomeProps> = ({ onOpenSchedule, onOpenChat, onDownloadResum
                 <h3>90%</h3>
                 <p>API Optimized</p>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
       </div>

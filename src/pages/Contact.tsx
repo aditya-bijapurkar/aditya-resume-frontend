@@ -35,28 +35,28 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
-    
+
     try {
       if (!isRecaptchaAvailable) {
         throw new Error('ReCaptcha verification failed. Please refresh the page and try again.');
       }
-      
+
       const token = await executeRecaptcha(RECAPTCHA_ACTIONS.CONTACT_FORM);
-      
+
       await emailService.sendContactEmail(formData, token);
       handleMailSuccess();
-      
+
       setFormData({
         name: '',
         emailId: '',
         subject: '',
         text: ''
       });
-    } 
+    }
     catch (error) {
-      setSubmitStatus({ 
-        type: 'error', 
-        message: error instanceof Error ? error.message : 'Failed to send message. Please try again.' 
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Failed to send message. Please try again.'
       });
     }
     finally {
@@ -70,7 +70,7 @@ const Contact: React.FC = () => {
         <h1>Get In Touch</h1>
         <p className="subtitle">Please feel free to reach out to me for any questions or collaborations.</p>
       </div>
-      
+
       <div className="page-content">
         <div className="contact-container">
           <div className="contact-info">
@@ -82,7 +82,7 @@ const Contact: React.FC = () => {
                 <a href="mailto:adityabijapurkar@gmail.com" target='_blank' rel="noreferrer"><p>adityabijapurkar@gmail.com</p></a>
               </div>
             </div>
-            
+
             <div className="contact-item">
               <span className="contact-icon">📱</span>
               <div>
@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
                 <a href="https://www.linkedin.com/in/aditya-bijapurkar/" target='_blank' rel="noreferrer"><p>https://www.linkedin.com/in/aditya-bijapurkar/</p></a>
               </div>
             </div>
-            
+
             <div className="contact-item">
               <span className="contact-icon">🐙</span>
               <div>
@@ -123,17 +123,17 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="contact-form">
             <h3>Send Me a Mail</h3>
             <small>You will recieve a copy mail for the same from the system!</small>
-            
+
             {submitStatus.type && (
               <div className={`status-message ${submitStatus.type}`}>
                 {submitStatus.message}
               </div>
             )}
-            
+
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -146,7 +146,7 @@ const Contact: React.FC = () => {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="subject">Subject</label>
                 <input
@@ -170,7 +170,7 @@ const Contact: React.FC = () => {
                   required
                 />
               </div>
-              
+
               <div className="form-group">
                 <label htmlFor="message">Message</label>
                 <textarea
@@ -183,9 +183,9 @@ const Contact: React.FC = () => {
                   required
                 />
               </div>
-              
-              <button 
-                type="submit" 
+
+              <button
+                type="submit"
                 className="btn btn-primary"
                 disabled={isSubmitting}
               >
@@ -199,4 +199,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

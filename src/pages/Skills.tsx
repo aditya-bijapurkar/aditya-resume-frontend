@@ -4,6 +4,12 @@ import './css/Pages.css';
 const Skills: React.FC = () => {
   const certifications = [
     {
+      name: 'Certified Solutions Architect - Associate',
+      validity: 'Sept 2026- Sept 2029',
+      provider: 'Amazon Web Services (AWS)',
+      link: 'https://www.credly.com/badges/a815687e-c5ee-4e10-87d7-a6369ea45a14'
+    },
+    {
       name: 'Certified Kubernetes Application Developer',
       validity: 'Oct 2025 - Oct 2027',
       provider: 'The Linux Foundation (CNCF)',
@@ -32,7 +38,7 @@ const Skills: React.FC = () => {
     {
       category: 'DevOps and Automation',
       skills: [
-     
+
         { name: 'Kubernetes' },
         { name: 'Docker' },
         { name: 'Github Actions' },
@@ -44,29 +50,29 @@ const Skills: React.FC = () => {
     {
       category: 'Top AWS Services',
       skills: [
+        { name: 'VPN'},
         { name: 'EC2' },
         { name: 'Lambda' },
-        { name: 'S3' }, 
+        { name: 'S3' },
         { name: 'SQS' },
-        { name: 'Cloudfront CDN' },
         { name: 'Application Gateway' },
       ]
     }
   ];
 
   const additionalSkills = [
-    'Github Actions', 'React.js', 'Prometheus', 
-    'Grafana', 'Jenkins', 'CI/CD', 'Microservices', 
-    'Authentication', 'Secrets Manager'
+    'Github Actions', 'React.js', 'Prometheus',
+    'Grafana', 'Jenkins', 'CI/CD', 'Microservices',
+    'Authentication', 'Secrets Manager', 'Kerberos', 'IAM', 'Cybersecurity'
   ]
 
   return (
     <div className="page">
       <div className="page-header">
-        <h1>Skills & Certifications</h1>
+        <h1>Certifications & Skills</h1>
         <p className="subtitle">Technologies and tools I work with</p>
       </div>
-      
+
       <div className="page-content">
         <div className="certifications-container">
           {certifications.map((certification, index) => (
@@ -83,11 +89,11 @@ const Skills: React.FC = () => {
 
         <div className="skills-overview">
           <p><b>
-            I've developed expertise in a wide range of technologies through 
-            years of hands-on experience. Here's a breakdown of my technical skills:
+            I've developed expertise in a wide range of technologies through
+            years of hands-on experience.
           </b></p>
         </div>
-        
+
         <div className="skills-container">
           {skillCategories.map((category, categoryIndex) => (
             <div key={categoryIndex} className="skill-category">
@@ -104,7 +110,7 @@ const Skills: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="additional-skills">
           <h3>Additional Skills</h3>
           <div className="skills-tags">
@@ -120,4 +126,4 @@ const Skills: React.FC = () => {
   );
 };
 
-export default Skills; 
+export default Skills;

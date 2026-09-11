@@ -7,10 +7,10 @@ const Sidebar: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: '🏠' },
+    { path: '/experience', label: 'My Experience', icon: '📈' },
+    { path: '/skills', label: 'My Certifications', icon: '🛠️' },
     { path: '/details', label: 'Project Overview', icon: '🚧'},
     { path: '/cost', label: 'Cost Analysis', icon: '💰' },
-    { path: '/experience', label: 'My Experience', icon: '📈' },
-    { path: '/skills', label: 'My Skills', icon: '🛠️' },
     { path: '/contact', label: 'Contact Me', icon: '📧' },
   ];
 
@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `nav-item ${isActive ? 'active' : ''}`
                   }
                   onClick={closeMobileMenu}
@@ -67,4 +67,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default Sidebar; 
+export default Sidebar;

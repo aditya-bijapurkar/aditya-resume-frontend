@@ -10,17 +10,19 @@ const Experience: React.FC = () => {
       period: '2026 May - Present',
       description: 'Software Engineer in the IAM team within the Cybersecurity division at Visa.',
       achievements: [
+        'Worked on inhouse tool to generate ephemeral certificates on bastion servers using CLI to login to private servers.',
+        'Created passwordless authentication using Kerberos / gMSA based keytabs on MSSQL and eliminated password rotation.',
+        'Working on onboarding PBAC agemts on AWS and GCP clouds to grant user access as a part of Day 0 access initiative',
         'Monitoring and governing user access across 30,000+ databases across Visa using automated pipelines and scripts.',
-        'Working on revoking access of dorment accounts with no activity for 90 days to meet compliance and security standards.',
       ],
-      technologies: ['Python', 'IAM', 'Databases']
+      technologies: ['Python', 'Go', 'Java', 'IAM', 'Cybersecurity']
     },
     {
       id: 2,
       company: 'AiDash',
       position: 'SDE 1',
       period: '2024 Nov - 2026 May',
-      description: 'Backend Developer at AiDash, designing and developing scalable backend systems using Java SpringBoot and Python Django.',
+      description: 'Backend Developer at AiDash, designing and developing scalable backend systems using SpringBoot and Django.',
       achievements: [
         'Developed an asynchronous multi-threaded architecture to scale task creation from 10 to 14k+ tasks.',
         'Implemented log tracing in over 6 microserices, streamlining debugging throughout the process lifeline.',
@@ -66,7 +68,7 @@ const Experience: React.FC = () => {
         <div className="explanation-section">
           <h3>Career Summary</h3>
           <p>
-            I am currently working at Visa in the IAM team to maintain and monitor user access across various database techs. <br/>
+            I am currently working at Visa in the IAM team to maintain and monitor user access across various departments. <br/>
             I have previously worked on 2 projects at AiDash, delivering scalable backend solutions for asset management and compliance.<br/>
             I have experience in developing and architecting microservices in Java SpringBoot and Python Django while maintaining high code quality and test coverage.<br/>
             Maintaining high quality code and streamlining the deployment process on AWS has been a top priority for me.<br/>
